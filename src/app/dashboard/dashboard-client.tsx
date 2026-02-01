@@ -91,10 +91,12 @@ export function DashboardClient() {
       const interval = setInterval(() => {
         setSimulationData((prevData) => {
           if (!prevData) return null;
+          const newCpu = Math.max(0, Math.min(100, prevData.cpuUsage + (Math.random() - 0.5) * 5));
+          const newMemory = Math.max(0, Math.min(100, prevData.memoryUsage + (Math.random() - 0.5) * 5));
           return {
             ...prevData,
-            cpuUsage: Math.max(0, Math.min(100, prevData.cpuUsage + (Math.random() - 0.5) * 5)),
-            memoryUsage: Math.max(0, Math.min(100, prevData.memoryUsage + (Math.random() - 0.5) * 5)),
+            cpuUsage: newCpu,
+            memoryUsage: newMemory,
           };
         });
       }, 2000);
@@ -107,7 +109,7 @@ export function DashboardClient() {
       setChartData((currentData) => [
         ...currentData.slice(-9),
         {
-          name: new Date().toLocaleTimeString(),
+          name: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
           cpu: simulationData.cpuUsage,
           memory: simulationData.memoryUsage,
         },
@@ -209,12 +211,11 @@ export function DashboardClient() {
             <CardTitle>Live Resource Usage</CardTitle>
           </CardHeader>
           <CardContent className="h-[350px] w-full">
-            {isPending && !simulationData && (
+            {isPending && !simulationData ? (
                 <div className="w-full h-full flex items-center justify-center">
                     <Skeleton className="w-full h-full"/>
                 </div>
-            )}
-            {simulationData && (
+            ) : simulationData && (
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart
                   data={chartData}

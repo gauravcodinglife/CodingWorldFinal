@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 223 29% 14%;
+    --background: 223 39% 7%;
     --foreground: 210 40% 98%;
-    --card: 223 29% 18%;
+    --card: 223 30% 12%;
     --card-foreground: 210 40% 98%;
-    --popover: 223 29% 14%;
+    --popover: 223 39% 7%;
     --popover-foreground: 210 40% 98%;
-    --primary: 224 65% 32%;
+    --primary: 254 85% 65%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 217 33% 25%;
+    --secondary: 221 50% 50%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 25%;
+    --muted: 223 15% 25%;
     --muted-foreground: 215 20% 65%;
-    --accent: 295 66% 27%;
+    --accent: 221 100% 68%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 22%;
-    --input: 217 33% 25%;
-    --ring: 224 65% 42%;
+    --border: 223 20% 18%;
+    --input: 223 20% 18%;
+    --ring: 254 85% 75%;
     --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -40,25 +40,25 @@
   }
 
   .dark {
-    --background: 223 29% 14%;
+    --background: 223 39% 7%;
     --foreground: 210 40% 98%;
-    --card: 223 29% 18%;
+    --card: 223 30% 12%;
     --card-foreground: 210 40% 98%;
-    --popover: 223 29% 14%;
+    --popover: 223 39% 7%;
     --popover-foreground: 210 40% 98%;
-    --primary: 224 65% 32%;
+    --primary: 254 85% 65%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 217 33% 25%;
+    --secondary: 221 50% 50%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 25%;
+    --muted: 223 15% 25%;
     --muted-foreground: 215 20% 65%;
-    --accent: 295 66% 27%;
+    --accent: 221 100% 68%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 22%;
-    --input: 217 33% 25%;
-    --ring: 224 65% 42%;
+    --border: 223 20% 18%;
+    --input: 223 20% 18%;
+    --ring: 254 85% 75%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
