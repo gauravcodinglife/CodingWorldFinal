@@ -6,7 +6,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
-  title: "Cloud Dojo",
+  title: "CodingWorld",
   description:
     "Learn AWS, GCP, Azure, Docker, and Kubernetes visually and practically.",
 };

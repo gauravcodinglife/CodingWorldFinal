@@ -87,10 +87,10 @@ export default function Terminal() {
         <div className="w-3 h-3 rounded-full bg-red-500"></div>
         <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
         <div className="w-3 h-3 rounded-full bg-green-500"></div>
-        <div className="text-xs text-muted-foreground ml-auto">/home/cloud_dojo_user</div>
+        <div className="text-xs text-muted-foreground ml-auto">/home/codingworld_user</div>
       </div>
       <div className="flex-grow p-4 overflow-y-auto">
-        <div className="text-green-400">Welcome to Cloud Dojo CLI!</div>
+        <div className="text-green-400">Welcome to CodingWorld CLI!</div>
         <div className="text-muted-foreground mb-4">
           Type 'help' to see a list of available commands.
         </div>

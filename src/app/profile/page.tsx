@@ -9,7 +9,7 @@ export default function ProfilePage() {
         </h1>
         <p className="text-lg text-muted-foreground mt-2 max-w-3xl mx-auto">
           Track your progress and get personalized learning recommendations to
-          guide your journey in the cloud.
+          guide your journey in coding.
         </p>
       </div>
       <ProfileClient />

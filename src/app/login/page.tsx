@@ -18,7 +18,7 @@ export default function LoginPage() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
           <CardDescription>
-            Log in to continue your cloud journey.
+            Log in to continue your coding journey.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">

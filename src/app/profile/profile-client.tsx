@@ -79,7 +79,7 @@ export function ProfileClient() {
             <div className="p-4 bg-primary/10 rounded-full mb-4">
               <User className="w-12 h-12 text-primary" />
             </div>
-            <CardTitle className="text-2xl font-headline">Cloud_Dojo_User</CardTitle>
+            <CardTitle className="text-2xl font-headline">CodingWorld_User</CardTitle>
             <CardDescription>Joined on {new Date().toLocaleDateString()}</CardDescription>
           </CardHeader>
           <CardContent>

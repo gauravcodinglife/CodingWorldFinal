@@ -22,7 +22,7 @@ export default function Header() {
       <div className="container mx-auto flex h-14 items-center px-4">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Layers className="h-6 w-6 text-primary" />
-          <span className="font-bold font-headline">Cloud Dojo</span>
+          <span className="font-bold font-headline">CodingWorld</span>
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navLinks.map((link) => (

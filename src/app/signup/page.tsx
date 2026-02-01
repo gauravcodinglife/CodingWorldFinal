@@ -18,7 +18,7 @@ export default function SignupPage() {
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-headline">Create an Account</CardTitle>
           <CardDescription>
-            Join Cloud Dojo to start learning and practicing.
+            Join CodingWorld to start learning and practicing.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">

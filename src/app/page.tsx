@@ -66,7 +66,7 @@ export default function Home() {
             <span className="text-primary">Visually & Practically.</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Cloud Dojo is a modern learning platform to master AWS, GCP, Azure,
+            CodingWorld is a modern learning platform to master AWS, GCP, Azure,
             Docker, and Kubernetes. Learn with interactive diagrams, practice
             with a real-time CLI, and simulate real-world dashboards.
           </p>

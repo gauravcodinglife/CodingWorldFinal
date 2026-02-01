@@ -141,7 +141,7 @@ export const cliCommands = [
       "Available commands: \n'ls': lists files \n'whoami': displays current user \n'date': shows current date \n'clear': clears the terminal\n'docker ps': Lists all running Docker containers.\n'docker images': Lists all local Docker images.\n'kubectl get pods': Lists all pods in the current namespace.\n'kubectl get nodes': Lists all nodes in the cluster.",
   },
   { command: "ls", output: "README.md  app.js  package.json" },
-  { command: "whoami", output: "cloud_dojo_user" },
+  { command: "whoami", output: "codingworld_user" },
   { command: "date", output: () => new Date().toString() },
   { command: "docker ps", output: "CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\n" },
   { command: "docker images", output: "REPOSITORY   TAG       IMAGE ID   CREATED   SIZE\n" },
