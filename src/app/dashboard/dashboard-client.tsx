@@ -161,7 +161,8 @@ export function DashboardClient() {
                 {isPending ? "Simulating..." : "Run Simulation"}
               </Button>
             </form>
-          </CardContent>
+          </Form>
+        </CardContent>
       </Card>
 
       <div>
