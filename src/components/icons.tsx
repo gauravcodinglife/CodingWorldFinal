@@ -1,4 +1,15 @@
 import React from 'react';
+import {
+    BrainCircuit,
+    Lightbulb,
+    HelpCircle,
+    UserCheck,
+    LoaderCircle,
+    Send,
+    Check,
+    Copy,
+    LucideProps
+} from 'lucide-react';
 
 const AWSLogo = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,4 +56,12 @@ export const Icons = {
     azure: AzureLogo,
     docker: DockerLogo,
     kubernetes: KubernetesLogo,
+    brainCircuit: (props: LucideProps) => <BrainCircuit {...props} />,
+    lightbulb: (props: LucideProps) => <Lightbulb {...props} />,
+    helpCircle: (props: LucideProps) => <HelpCircle {...props} />,
+    userCheck: (props: LucideProps) => <UserCheck {...props} />,
+    spinner: (props: LucideProps) => <LoaderCircle {...props} />,
+    send: (props: LucideProps) => <Send {...props} />,
+    check: (props: LucideProps) => <Check {...props} />,
+    copy: (props: LucideProps) => <Copy {...props} />,
 }

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Link from "next/link";
 import { Layers, Menu, X } from "lucide-react";
@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/platforms", label: "Platforms" },
+  { href: "/platforms/aws", label: "AWS Platform" },
   { href: "/cli", label: "CLI Practice" },
   { href: "/dashboard", label: "Dashboard Demo" },
   { href: "/profile", label: "Profile" },

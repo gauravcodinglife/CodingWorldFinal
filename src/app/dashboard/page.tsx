@@ -1,4 +1,6 @@
+'use client';
 import { DashboardClient } from "./dashboard-client";
+import CloudMentor from "@/components/cloud-mentor";
 
 export default function DashboardPage() {
   return (
@@ -14,6 +16,7 @@ export default function DashboardPage() {
         </p>
       </div>
       <DashboardClient />
+      <CloudMentor context="dashboard-demo" />
     </div>
   );
 }
