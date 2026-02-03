@@ -96,4 +96,49 @@ export const cliCommands = [
   { command: 'kubectl get ingress', output: 'No resources found in default namespace.' },
   { command: 'kubectl get pv', output: 'No resources found.' },
   { command: 'kubectl get pvc', output: 'No resources found in default namespace.' },
+
+  { command: 'pwd', output: '/home/user' },
+  { command: 'ls -a', output: '.  ..  .bash_history  .bashrc  README.md  app.js  package.json' },
+  { command: 'ls -l', output: 'total 12\n-rw-r--r-- 1 user user  134 Mar 17 10:20 README.md\n-rwxr-xr-x 1 user user  345 Mar 17 10:22 app.js\n-rw-r--r-- 1 user user 1024 Mar 17 10:18 package.json' },
+  { command: 'cd /var/log', output: '' },
+  { command: 'mkdir new_directory', output: '' },
+  { command: 'touch new_file.txt', output: '' },
+  { command: 'cp app.js app.js.bak', output: '' },
+  { command: 'mv app.js.bak /tmp', output: '' },
+  { command: 'rm new_file.txt', output: '' },
+  { command: 'rmdir new_directory', output: '' },
+  { command: 'cat README.md', output: 'This is a sample README file.' },
+  { command: 'head -n 5 /var/log/syslog', output: 'Mar 17 10:00:01 localhost kernel: [    0.000000] Linux version 5.15.0-67-generic ...' },
+  { command: 'tail -n 5 /var/log/syslog', output: 'Mar 17 10:25:01 localhost CRON[12345]: (root) CMD (cd / && run-parts --report /etc/cron.hourly)' },
+  { command: 'grep "error" /var/log/syslog', output: 'Mar 17 10:15:01 localhost systemd[1]: Failed to start Application.' },
+  { command: 'find . -name "*.js"', output: './app.js' },
+  { command: 'chmod 755 app.js', output: '' },
+  { command: 'chown user:user app.js', output: '' },
+  { command: 'df -h', output: 'Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda1        50G   20G   30G  40% /' },
+  { command: 'du -h', output: '4.0K\t./.cache\n12K\t.' },
+  { command: 'free -h', output: '              total        used        free      shared  buff/cache   available\nMem:           7.8G        2.1G        5.7G        1.0M        550M        6.0G\nSwap:          2.0G          0B        2.0G' },
+  { command: 'uname -a', output: 'Linux localhost 5.15.0-67-generic #74-Ubuntu SMP Wed Feb 22 14:02:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux' },
+  { command: 'top -n 1', output: 'top - 10:30:01 up  30 min,  1 user,  load average: 0.00, 0.01, 0.05 ...' },
+  { command: 'ps aux', output: 'USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot           1  0.0  0.1  16896  9368 ?        Ss   10:00   0:01 /sbin/init\nuser       12345  0.0  0.0   8192  3860 pts/0    S+   10:25   0:00 -bash' },
+  { command: 'kill 12345', output: '' },
+  { command: 'killall -9 nginx', output: 'nginx: no process found' },
+  { command: 'ifconfig', output: 'eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500 ...' },
+  { command: 'ping google.com', output: 'PING google.com (172.217.16.142) 56(84) bytes of data.\n64 bytes from ...' },
+  { command: 'netstat -tuln', output: 'Active Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State\ntcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN' },
+  { command: 'wget https://example.com/file.zip', output: `--2023-03-17 10:35:01--  https://example.com/file.zip
+Resolving example.com... 93.184.216.34
+Connecting to example.com|93.184.216.34|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 12345678 (12M) [application/zip]
+Saving to: ‘file.zip’
+
+file.zip            100%[===================>]  11.77M  --.-KB/s    in 0.5s
+
+2023-03-17 10:35:02 (22.5 MB/s) - ‘file.zip’ saved [12345678/12345678]` },
+  { command: 'curl -I https://example.com', output: 'HTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n... (other headers)' },
+  { command: 'tar -czvf archive.tar.gz /home/user', output: 'tar: Removing leading `/' from member names\n/home/user/\n/home/user/.bash_history\n...' },
+  { command: 'unzip archive.zip', output: 'Archive:  archive.zip\n  inflating: file1.txt\n  inflating: file2.txt' },
+  { command: 'ssh user@example.com', output: 'The authenticity of host 'example.com (93.184.216.34)' can't be established.\nECDSA key fingerprint is SHA256:....\nAre you sure you want to continue connecting (yes/no/[fingerprint])? ' },
+  { command: 'scp file.txt user@example.com:~/ ', output: 'file.txt                                         100%   12KB  12.3KB/s   00:00' },
+  { command: 'history', output: '    1  ls\n    2  cd /var/log\n    3  history' }
 ];

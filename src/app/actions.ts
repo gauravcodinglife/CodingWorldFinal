@@ -9,6 +9,10 @@ import {
   generatePersonalizedLearningPaths,
   GeneratePersonalizedLearningPathsInput,
 } from "@/ai/flows/generate-personalized-learning-paths";
+import {
+  generateRecommendations,
+  GenerateRecommendationsInput,
+} from "@/ai/flows/generate-recommendations";
 
 export async function getDashboardSimulation(
   input: SimulateCloudDashboardInput
@@ -16,10 +20,12 @@ export async function getDashboardSimulation(
   "use server";
   try {
     const result = await simulateCloudDashboard(input);
+    const recommendations = await getRecommendations(input);
+    result.recommendations = recommendations.data.recommendations;
     return { data: result };
   } catch (error) {
     console.error(error);
-    return { error: "Failed to simulate dashboard." };
+    return { error: error.message };
   }
 }
 
@@ -33,5 +39,16 @@ export async function getPersonalizedLearningPaths(
   } catch (error) {
     console.error(error);
     return { error: "Failed to generate learning paths." };
+  }
+}
+
+export async function getRecommendations(input: GenerateRecommendationsInput) {
+  "use server";
+  try {
+    const result = await generateRecommendations(input);
+    return { data: result };
+  } catch (error) {
+    console.error(error);
+    return { error: "Failed to generate recommendations." };
   }
 }

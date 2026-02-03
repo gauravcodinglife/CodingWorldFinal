@@ -13,8 +13,8 @@ export default function Footer() {
           © {new Date().getFullYear()} CodingWorld. All rights reserved.
         </p>
         <div className="flex items-center space-x-4 mt-4 md:mt-0">
-           <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
-           <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link>
+           <Link href="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
+           <Link href="/terms-of-service" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link>
         </div>
       </div>
     </footer>

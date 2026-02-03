@@ -99,7 +99,7 @@ export function DashboardClient() {
             memoryUsage: newMemory,
           };
         });
-      }, 2000);
+      }, 14000);
       return () => clearInterval(interval);
     }
   }, [simulationData]);

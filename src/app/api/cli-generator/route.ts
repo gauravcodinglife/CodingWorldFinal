@@ -1,1 +1,69 @@
-\nimport { NextRequest, NextResponse } from \'next/server\';\nimport Groq from \'groq-sdk\';\n\nconst groq = new Groq({\n    apiKey: process.env.GROQ_API_KEY\n});\n\nexport async function POST(req: NextRequest) {\n  const { prompt } = await req.json();\n\n  const systemPrompt = `You are an expert in DevOps and command-line interfaces. Your task is to take a user\'s description of a task in plain English and convert it into the precise CLI command.\n\n- You should support a wide range of commands, including but not limited to: \`aws\`, \`gcloud\`, \`docker\`, \`kubectl\`, \`git\`, and standard Linux/bash commands.\n- The user will provide a prompt describing what they want to do.\n- You must return a single, executable command that accomplishes the user\'s goal.\n- Your response should be a JSON object containing only one key, \"command\", whose value is the generated command string.\n- Do not add any explanations, introductory text, or markdown formatting. Just the raw command.\n\nExample User Prompt: "create a new s3 bucket called my-test-bucket in the us-east-1 region"\n\nYour Response:\n{\n  "command": "aws s3api create-bucket --bucket my-test-bucket --region us-east-1"\n}\n\nExample User Prompt: "list all running docker containers"\n\nYour Response:\n{\n  "command": "docker ps"\n}\n\nExample User Prompt: "show me the commit history for the current git branch"\n\nYour Response:\n{\n  "command": "git log"\n}\n`;\n\n  try {\n    const chatCompletion = await groq.chat.completions.create({\n        messages: [\n            {\n                role: \"system\",\n                content: systemPrompt\n            },\n            {\n                role: \"user\",\n                content: `Generate the command for the following task: \\"${prompt}\\"`\n            }\n        ],\n        model: \"llama3-8b-8192\",\n        temperature: 0.2, // Lower temperature for more deterministic output\n        max_tokens: 150,\n        top_p: 1,\n        stream: false,\n        response_format: { type: \"json_object\" }\n    });\n\n    const responseJson = JSON.parse(chatCompletion.choices[0].message.content || "{}");\n\n    return NextResponse.json(responseJson);\n\n  } catch (error) {\n    console.error(\'Error calling Groq API:\', error);\n    return NextResponse.json({ error: \'Failed to generate command.\' }, { status: 500 });\n  }\n}\n
+import { NextRequest, NextResponse } from 'next/server';
+import Groq from 'groq-sdk';
+
+const groq = new Groq({
+    apiKey: process.env.GROQ_API_KEY
+});
+
+export async function POST(req: NextRequest) {
+  const { prompt } = await req.json();
+
+  const systemPrompt = `You are an expert in DevOps and command-line interfaces. Your task is to take a user's description of a task in plain English and convert it into the precise CLI command.
+
+- You should support a wide range of commands, including but not limited to: \`aws\`, \`gcloud\`, \`docker\`, \`kubectl\`, \`git\`, and standard Linux/bash commands.
+- The user will provide a prompt describing what they want to do.
+- You must return a single, executable command that accomplishes the user's goal.
+- Your response should be a JSON object containing only one key, "command", whose value is the generated command string.
+- Do not add any explanations, introductory text, or markdown formatting. Just the raw command.
+
+Example User Prompt: "create a new s3 bucket called my-test-bucket in the us-east-1 region"
+
+Your Response:
+{
+  "command": "aws s3api create-bucket --bucket my-test-bucket --region us-east-1"
+}
+
+Example User Prompt: "list all running docker containers"
+
+Your Response:
+{
+  "command": "docker ps"
+}
+
+Example User Prompt: "show me the commit history for the current git branch"
+
+Your Response:
+{
+  "command": "git log"
+}
+`;
+
+  try {
+    const chatCompletion = await groq.chat.completions.create({
+        messages: [
+            {
+                role: "system",
+                content: systemPrompt
+            },
+            {
+                role: "user",
+                content: `Generate the command for the following task: "${prompt}"`
+            }
+        ],
+        model: "llama3-8b-8192",
+        temperature: 0.2, // Lower temperature for more deterministic output
+        max_tokens: 150,
+        top_p: 1,
+        stream: false,
+        response_format: { type: "json_object" }
+    });
+
+    const responseJson = JSON.parse(chatCompletion.choices[0].message.content || "{}");
+
+    return NextResponse.json(responseJson);
+
+  } catch (error) {
+    console.error('Error calling Groq API:', error);
+    return NextResponse.json({ error: 'Failed to generate command.' }, { status: 500 });
+  }
+}

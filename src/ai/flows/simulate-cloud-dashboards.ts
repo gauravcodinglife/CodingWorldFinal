@@ -32,41 +32,13 @@ export type SimulateCloudDashboardOutput = z.infer<typeof SimulateCloudDashboard
 export async function simulateCloudDashboard(
   input: SimulateCloudDashboardInput
 ): Promise<SimulateCloudDashboardOutput> {
-  return simulateCloudDashboardFlow(input);
+  // Return a static mock response to avoid API calls
+  return {
+    cpuUsage: 75,
+    memoryUsage: 60,
+    podsRunning: 10,
+    costEstimate: 100,
+    uptime: 99.9,
+    recommendations: "Your recommendations are loading...",
+  };
 }
-
-const simulateCloudDashboardPrompt = ai.definePrompt({
-  name: 'simulateCloudDashboardPrompt',
-  input: {schema: SimulateCloudDashboardInputSchema},
-  output: {schema: SimulateCloudDashboardOutputSchema},
-  prompt: `You are a cloud resource prediction expert.
-
-  Based on the user description, predict the resource requirements for a cloud environment.
-
-  User Description: {{{userDescription}}}
-
-  Respond with the following metrics:
-
-  - CPU Usage: (percentage)
-  - Memory Usage: (percentage)
-  - Pods Running: (number)
-  - Cost Estimate: (USD)
-  - Uptime: (percentage)
-  - Recommendations: (string, personalized learning paths and practice exercises based on user progress and preferences)
-
-  Make sure the CPU usage, memory usage and uptime are percentages.
-  Do not include units in the output values (e.g. %, USD).
-`,
-});
-
-const simulateCloudDashboardFlow = ai.defineFlow(
-  {
-    name: 'simulateCloudDashboardFlow',
-    inputSchema: SimulateCloudDashboardInputSchema,
-    outputSchema: SimulateCloudDashboardOutputSchema,
-  },
-  async input => {
-    const {output} = await simulateCloudDashboardPrompt(input);
-    return output!;
-  }
-);

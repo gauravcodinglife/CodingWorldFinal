@@ -8,10 +8,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/platforms/aws", label: "AWS Platform" },
-  { href: "/cli", label: "CLI Practice" },
-  { href: "/dashboard", label: "Dashboard Demo" },
-  { href: "/profile", label: "Profile" },
+  { href: "#platforms", label: "Platforms" },
+  { href: "#features", label: "Practice Lab" },
+  { href: "#core-features", label: "Simulations" },
+  { href: "/interview-prep", label: "Interview Prep" },
+  { href: "/roadmaps", label: "Roadmaps" },
 ];
 
 export default function Header() {
