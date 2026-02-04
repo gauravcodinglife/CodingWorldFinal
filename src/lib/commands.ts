@@ -1,20 +1,36 @@
 export const cliCommands = [
   {
     command: "help",
-    output:
-      `Available commands: \n'ls': lists files \n'whoami': displays current user \n'date': shows current date \n'clear': clears the terminal\n'aws ec2 describe-instances': Describes your active EC2 instances.\n'aws lambda list-functions': Lists your Lambda functions.\n'aws ecs list-clusters': Lists your ECS clusters.\n'aws eks list-clusters': Lists your EKS clusters.\n'aws elasticbeanstalk describe-applications': Describes the configurations of your Elastic Beanstalk applications.\n'aws apprunner list-services': Lists your App Runner services.\n'aws autoscaling describe-auto-scaling-groups': Describes your Auto Scaling groups.\n'aws s3 ls': Lists all of your S3 buckets.\n'aws ec2 describe-volumes': Describes your EBS volumes.\n'aws efs describe-file-systems': Describes your EFS file systems.\n'aws glacier list-vaults': Lists your S3 Glacier vaults.\n'aws ec2 describe-vpcs': Describes your VPCs.\n'aws ec2 describe-subnets': Describes your subnets.\n'aws ec2 describe-route-tables': Describes your route tables.\n'aws ec2 describe-internet-gateways': Describes your internet gateways.\n'aws ec2 describe-nat-gateways': Describes your NAT gateways.\n'aws ec2 describe-security-groups': Describes your security groups.\n'aws ec2 describe-network-acls': Describes your Network ACLs.\n'aws elbv2 describe-load-balancers': Describes your Application and Network Load Balancers.\n'aws route53 list-hosted-zones': Lists your Route 53 hosted zones.\n'aws cloudfront list-distributions': Lists your CloudFront distributions.\n'aws rds describe-db-instances': Lists your RDS database instances.\n'aws rds describe-db-clusters': Lists your Aurora DB clusters.\n'aws dynamodb list-tables': Lists your DynamoDB tables.\n'aws elasticache describe-cache-clusters': Describes your ElastiCache clusters.\n'aws redshift describe-clusters': Describes your Redshift clusters.\n'aws iam list-users': Lists IAM users in your account.\n'aws iam list-roles': Lists IAM roles in your account.\n'aws kms list-keys': Lists the KMS keys in your account.\n'aws secretsmanager list-secrets': Lists the secrets stored in Secrets Manager.\n'aws cognito-idp list-user-pools --max-results 10': Lists your Cognito User Pools.\n'aws wafv2 list-web-acls --scope CLOUDFRONT': Lists your WAF Web ACLs.\n'aws shield describe-protection --protection-id some-id': Describes an AWS Shield protection (requires a protection ID).\n'aws cloudwatch describe-alarms': Lists your CloudWatch alarms.\n'aws logs describe-log-groups': Lists your CloudWatch Log Groups.\n'aws cloudtrail list-trails': Lists your CloudTrail trails.\n'aws xray get-trace-summaries --start-time 1970-01-01T00:00:00Z --end-time 2038-01-19T03:14:07Z': Retrieves a list of trace summaries for traces in a specified time frame.\n'aws codecommit list-repositories': Lists your CodeCommit repositories.\n'aws codebuild list-projects': Lists your CodeBuild projects.\n'aws codedeploy list-applications': Lists your CodeDeploy applications.\n'aws codepipeline list-pipelines': Lists your CodePipelines.\n'aws cloudformation list-stacks': Lists your CloudFormation stacks.\n'aws ssm describe-instance-information': Views information about your instances managed by Systems Manager.\n'aws sns list-topics': Lists your SNS topics.\n'aws sqs list-queues': Lists your SQS queues.\n'aws ses list-identities': Lists the email identities (domains and addresses) that you have verified with SES.\n'aws organizations describe-organization': Retrieves information about your organization.\n'aws ce get-cost-and-usage --time-period Start=2024-01-01,End=2024-02-01 --granularity MONTHLY --metrics \"BlendedCost\"': Retrieves cost and usage metrics for your account. (Example for Jan 2024)\n'aws budgets describe-budgets --account-id 123456789012': Describes the budgets for an account (requires account ID).\n'aws support describe-trusted-advisor-checks --language en': Describes the available Trusted Advisor checks.\n'gcloud compute instances list': List all Google Compute Engine virtual machine instances.\n'gcloud storage buckets list': Lists your Cloud Storage buckets.\n'gcloud projects get-iam-policy YOUR_PROJECT_ID': Gets the IAM policy for a project.\n'gcloud functions list': Lists your Google Cloud Functions.\n'gcloud sql instances list': Lists your Cloud SQL instances.\n'gcloud container clusters list': Lists your GKE clusters.\n'gcloud pubsub topics list': Lists your Pub/Sub topics.\n'bq ls': Lists datasets in your default project.\n'az vm list': Get the list of virtual machines.\n'az storage container list': Lists storage containers.\n'az ad user list': Lists users in Azure AD.\n'az functionapp list': Lists your Azure Function Apps.\n'az cosmosdb list': Lists your Azure Cosmos DB accounts.\n'az aks list': Lists your AKS clusters.\n'az devops project list': Lists projects in your Azure DevOps organization.\n'docker ps': Lists all running Docker containers.\n'docker ps -a': Lists all Docker containers, including stopped ones.\n'docker images': Lists all local Docker images.\n'docker build -t my-app .': Builds an image from a Dockerfile.\n'docker-compose up': Builds, (re)creates, starts, and attaches to containers for a service.\n'docker-compose down': Stops and removes containers, networks, volumes, and images created by up.\n'cat Dockerfile': Displays the content of a sample Dockerfile.\n'docker volume create my-volume': Creates a new Docker volume.\n'docker volume ls': Lists all Docker volumes.\n'docker network ls': Lists all Docker networks.\n'docker network create my-net': Creates a new Docker network.\n'kubectl get pods': Lists all pods in the current namespace.\n'kubectl get deployments': Lists all deployments.\n'kubectl scale deployment my-app --replicas=3': Scales a deployment to 3 replicas.\n'kubectl get services': Lists all services.\n'kubectl expose deployment my-app --port=80 --type=LoadBalancer': Exposes a deployment as a new service.\n'kubectl get namespaces': Lists all namespaces in the cluster.\n'kubectl create namespace my-namespace': Creates a new namespace.\n'kubectl get configmaps': Lists all ConfigMaps.\n'kubectl get secrets': Lists all Secrets.\n'kubectl get ingress': Lists all Ingress resources.\n'kubectl get pv': Lists all Persistent Volumes.\n'kubectl get pvc': Lists all Persistent Volume Claims.\n`,
+    output: `
+Available commands: 
+- 'ls': lists files 
+- 'whoami': displays current user 
+- 'date': shows current date 
+- 'clear': clears the terminal
+- 'aws ec2 describe-instances': Describes your active EC2 instances.
+- 'aws lambda list-functions': Lists your Lambda functions.
+- 'aws ecs list-clusters': Lists your ECS clusters.
+- 'aws eks list-clusters': Lists your EKS clusters.
+- 'gcloud compute instances list': List all Google Compute Engine virtual machine instances.
+- 'az vm list': Get the list of virtual machines.
+- 'docker ps': Lists all running Docker containers.
+- 'docker images': Lists all local Docker images.
+- 'kubectl get pods': Lists all pods in the current namespace.
+- 'kubectl get services': Lists all services.
+(And many more AWS, GCP, Azure, Docker, and kubectl commands...)
+`,
   },
   { command: "ls", output: "README.md  app.js  package.json" },
   { command: "whoami", output: "codingworld_user" },
   { command: "date", output: () => new Date().toString() },
-  { command: "aws ec2 describe-instances", output: `{"Reservations": []}` },
+  { command: "aws ec2 describe-instances", output: '{"Reservations": []}' },
   { command: "aws lambda list-functions", output: '{"Functions": []}' },
   { command: "aws ecs list-clusters", output: '{"clusterArns": []}' },
   { command: "aws eks list-clusters", output: '{"clusters": []}' },
   { command: "aws elasticbeanstalk describe-applications", output: '{"Applications": []}' },
   { command: "aws apprunner list-services", output: '{"ServiceSummaryList": []}' },
   { command: "aws autoscaling describe-auto-scaling-groups", output: '{"AutoScalingGroups": []}' },
-  { command: "aws s3 ls", output: `{"Buckets": []}` },
+  { command: "aws s3 ls", output: "Your S3 buckets will be listed here." },
   { command: "aws ec2 describe-volumes", output: '{"Volumes": []}' },
   { command: "aws efs describe-file-systems", output: '{"FileSystems": []}' },
   { command: "aws glacier list-vaults", output: '{"VaultList": []}' },
@@ -33,8 +49,8 @@ export const cliCommands = [
   { command: 'aws dynamodb list-tables', output: '{"TableNames": []}' },
   { command: "aws elasticache describe-cache-clusters", output: '{"CacheClusters": []}' },
   { command: "aws redshift describe-clusters", output: '{"Clusters": []}' },
-  { command: "aws iam list-users", output: `{"Users": []}` },
-  { command: "aws iam list-roles", output: `{"Roles": []}` },
+  { command: "aws iam list-users", output: '{"Users": []}' },
+  { command: "aws iam list-roles", output: '{"Roles": []}' },
   { command: "aws kms list-keys", output: '{"Keys": []}' },
   { command: "aws secretsmanager list-secrets", output: '{"SecretList": []}' },
   { command: "aws cognito-idp list-user-pools --max-results 10", output: '{"UserPools": []}' },
@@ -59,7 +75,7 @@ export const cliCommands = [
   { command: "aws support describe-trusted-advisor-checks --language en", output: '{"checks": []}' },
   { command: "gcloud compute instances list", output: "Listed 0 items." },
   { command: "gcloud storage buckets list", output: "Listed 0 items." },
-  { command: "gcloud projects get-iam-policy YOUR_PROJECT_ID", output: "bindings: []\netag: BwX..." },
+  { command: "gcloud projects get-iam-policy YOUR_PROJECT_ID", output: `bindings: []\netag: BwX...` },
   { command: 'gcloud functions list', output: 'Listed 0 items.' },
   { command: 'gcloud sql instances list', output: 'Listed 0 items.' },
   { command: 'gcloud container clusters list', output: 'Listed 0 items.' },
@@ -72,73 +88,28 @@ export const cliCommands = [
   { command: 'az cosmosdb list', output: '[]' },
   { command: 'az aks list', output: '[]' },
   { command: 'az devops project list', output: '[]' },
-  { command: "docker ps", output: "CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\n" },
-  { command: "docker ps -a", output: "CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\n" },
-  { command: "docker images", output: "REPOSITORY   TAG       IMAGE ID   CREATED   SIZE\n" },
+  { command: "docker ps", output: `CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\n` },
+  { command: "docker ps -a", output: `CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES\n` },
+  { command: "docker images", output: `REPOSITORY   TAG       IMAGE ID   CREATED   SIZE\n` },
   { command: "docker build -t my-app .", output: "Sending build context to Docker daemon... Successfully built..." },
-  { command: "docker-compose up", output: "Creating network \"my-project_default\" with the default driver\nCreating my-project_web_1 ... done" },
-  { command: "docker-compose down", output: "Stopping my-project_web_1 ... done\nRemoving my-project_web_1 ... done\nRemoving network my-project_default" },
-  { command: 'cat Dockerfile', output: 'FROM node:18\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install\nCOPY . .\nEXPOSE 3000\nCMD ["npm", "start"]' },
+  { command: "docker-compose up", output: `Creating network "my-project_default" with the default driver\nCreating my-project_web_1 ... done` },
+  { command: "docker-compose down", output: `Stopping my-project_web_1 ... done\nRemoving my-project_web_1 ... done\nRemoving network my-project_default` },
+  { command: 'cat Dockerfile', output: `FROM node:18\nWORKDIR /app\nCOPY package*.json ./\nRUN npm install\nCOPY . .\nEXPOSE 3000\nCMD ["npm", "start"]` },
   { command: 'docker volume create my-volume', output: 'my-volume' },
-  { command: 'docker volume ls', output: 'DRIVER    VOLUME NAME\nlocal     my-volume' },
+  { command: 'docker volume ls', output: `DRIVER    VOLUME NAME\nlocal     my-volume` },
   { command: 'docker network ls', output: 'NETWORK ID     NAME      DRIVER    SCOPE' },
   { command: 'docker network create my-net', output: 'a1b2c3d4e5f6' },
-  { command: "kubectl get pods", output: "NAME          READY   STATUS    RESTARTS   AGE\n" },
-  { command: "kubectl get nodes", output: "NAME      STATUS   ROLES    AGE   VERSION\n" },
+  { command: "kubectl get pods", output: `NAME          READY   STATUS    RESTARTS   AGE\n` },
+  { command: "kubectl get nodes", output: `NAME      STATUS   ROLES    AGE   VERSION\n` },
   { command: "kubectl get deployments", output: "NAME      READY   UP-TO-DATE   AVAILABLE   AGE" },
   { command: "kubectl scale deployment my-app --replicas=3", output: "deployment.apps/my-app scaled" },
   { command: "kubectl get services", output: "NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE" },
   { command: "kubectl expose deployment my-app --port=80 --type=LoadBalancer", output: "service/my-app exposed" },
-  { command: 'kubectl get namespaces', output: 'NAME              STATUS   AGE\ndefault           Active   1d\nkube-system       Active   1d\nkube-public       Active   1d' },
+  { command: 'kubectl get namespaces', output: `NAME              STATUS   AGE\ndefault           Active   1d\nkube-system       Active   1d\nkube-public       Active   1d` },
   { command: 'kubectl create namespace my-namespace', output: 'namespace/my-namespace created' },
   { command: 'kubectl get configmaps', output: 'No resources found in default namespace.' },
   { command: 'kubectl get secrets', output: 'NAME                  TYPE                                  DATA   AGE' },
   { command: 'kubectl get ingress', output: 'No resources found in default namespace.' },
   { command: 'kubectl get pv', output: 'No resources found.' },
   { command: 'kubectl get pvc', output: 'No resources found in default namespace.' },
-
-  { command: 'pwd', output: '/home/user' },
-  { command: 'ls -a', output: '.  ..  .bash_history  .bashrc  README.md  app.js  package.json' },
-  { command: 'ls -l', output: 'total 12\n-rw-r--r-- 1 user user  134 Mar 17 10:20 README.md\n-rwxr-xr-x 1 user user  345 Mar 17 10:22 app.js\n-rw-r--r-- 1 user user 1024 Mar 17 10:18 package.json' },
-  { command: 'cd /var/log', output: '' },
-  { command: 'mkdir new_directory', output: '' },
-  { command: 'touch new_file.txt', output: '' },
-  { command: 'cp app.js app.js.bak', output: '' },
-  { command: 'mv app.js.bak /tmp', output: '' },
-  { command: 'rm new_file.txt', output: '' },
-  { command: 'rmdir new_directory', output: '' },
-  { command: 'cat README.md', output: 'This is a sample README file.' },
-  { command: 'head -n 5 /var/log/syslog', output: 'Mar 17 10:00:01 localhost kernel: [    0.000000] Linux version 5.15.0-67-generic ...' },
-  { command: 'tail -n 5 /var/log/syslog', output: 'Mar 17 10:25:01 localhost CRON[12345]: (root) CMD (cd / && run-parts --report /etc/cron.hourly)' },
-  { command: 'grep "error" /var/log/syslog', output: 'Mar 17 10:15:01 localhost systemd[1]: Failed to start Application.' },
-  { command: 'find . -name "*.js"', output: './app.js' },
-  { command: 'chmod 755 app.js', output: '' },
-  { command: 'chown user:user app.js', output: '' },
-  { command: 'df -h', output: 'Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda1        50G   20G   30G  40% /' },
-  { command: 'du -h', output: '4.0K\t./.cache\n12K\t.' },
-  { command: 'free -h', output: '              total        used        free      shared  buff/cache   available\nMem:           7.8G        2.1G        5.7G        1.0M        550M        6.0G\nSwap:          2.0G          0B        2.0G' },
-  { command: 'uname -a', output: 'Linux localhost 5.15.0-67-generic #74-Ubuntu SMP Wed Feb 22 14:02:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux' },
-  { command: 'top -n 1', output: 'top - 10:30:01 up  30 min,  1 user,  load average: 0.00, 0.01, 0.05 ...' },
-  { command: 'ps aux', output: 'USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot           1  0.0  0.1  16896  9368 ?        Ss   10:00   0:01 /sbin/init\nuser       12345  0.0  0.0   8192  3860 pts/0    S+   10:25   0:00 -bash' },
-  { command: 'kill 12345', output: '' },
-  { command: 'killall -9 nginx', output: 'nginx: no process found' },
-  { command: 'ifconfig', output: 'eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500 ...' },
-  { command: 'ping google.com', output: 'PING google.com (172.217.16.142) 56(84) bytes of data.\n64 bytes from ...' },
-  { command: 'netstat -tuln', output: 'Active Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State\ntcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN' },
-  { command: 'wget https://example.com/file.zip', output: `--2023-03-17 10:35:01--  https://example.com/file.zip
-Resolving example.com... 93.184.216.34
-Connecting to example.com|93.184.216.34|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 12345678 (12M) [application/zip]
-Saving to: ‘file.zip’
-
-file.zip            100%[===================>]  11.77M  --.-KB/s    in 0.5s
-
-2023-03-17 10:35:02 (22.5 MB/s) - ‘file.zip’ saved [12345678/12345678]` },
-  { command: 'curl -I https://example.com', output: 'HTTP/1.1 200 OK\nContent-Type: text/html; charset=UTF-8\n... (other headers)' },
-  { command: 'tar -czvf archive.tar.gz /home/user', output: 'tar: Removing leading `/' from member names\n/home/user/\n/home/user/.bash_history\n...' },
-  { command: 'unzip archive.zip', output: 'Archive:  archive.zip\n  inflating: file1.txt\n  inflating: file2.txt' },
-  { command: 'ssh user@example.com', output: 'The authenticity of host 'example.com (93.184.216.34)' can't be established.\nECDSA key fingerprint is SHA256:....\nAre you sure you want to continue connecting (yes/no/[fingerprint])? ' },
-  { command: 'scp file.txt user@example.com:~/ ', output: 'file.txt                                         100%   12KB  12.3KB/s   00:00' },
-  { command: 'history', output: '    1  ls\n    2  cd /var/log\n    3  history' }
 ];

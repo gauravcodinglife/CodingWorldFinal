@@ -1,7 +1,26 @@
 
-import { Milestone, CheckCircle, ArrowRight } from "lucide-react";
+import { Milestone, CheckCircle, ArrowRight, Book, ShieldCheck, Star } from "lucide-react";
 import Link from "next/link";
 import { tracks } from "@/lib/learning-tracks";
+import { Explainer } from "@/components/explainer";
+
+// Placeholder for a new component that can be created later
+const TerminalPracticeBox = ({ commands }: { commands: string[] }) => (
+  <div className="bg-gray-900 text-white p-4 rounded-lg my-4 font-mono text-sm">
+    <p className="text-gray-400">// Terminal Practice</p>
+    {commands.map((cmd, i) => (
+      <p key={i}><span className="text-green-400">$</span> {cmd}</p>
+    ))}
+  </div>
+);
+
+// Placeholder for a new component
+const RealDevOpsScenario = ({ children }: { children: React.ReactNode }) => (
+  <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 my-4 rounded-r-lg">
+    <p className="font-bold">🔧 In a Real Job:</p>
+    <p>{children}</p>
+  </div>
+);
 
 export default function GitPage() {
 
@@ -11,7 +30,9 @@ export default function GitPage() {
     return <div>Track not found</div>;
   }
 
-  const { title, description, skills, modules } = track;
+  const { title, description, skills, modules, labs, capstone } = track;
+  const totalLessons = modules[0].lessons.length;
+  const completedLessons = modules[0].lessons.filter(l => l.completed).length;
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -44,28 +65,114 @@ export default function GitPage() {
 
       <div className="mt-12">
         <h2 className="text-3xl font-bold font-headline">Key Concepts</h2>
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map(skill => (
-            <div key={skill} className="p-4 bg-card border border-border/20 rounded-lg">
-              <p className="font-semibold text-foreground">{skill}</p>
-            </div>
+            <Explainer key={skill} serviceName={skill}>
+              <div className="p-6 bg-card border border-border/20 rounded-lg flex flex-col gap-4 hover:bg-primary/10 cursor-pointer">
+                <p className="font-semibold text-foreground text-lg">{skill}</p>
+              </div>
+            </Explainer>
           ))}
         </div>
       </div>
 
       <div className="mt-12">
-        <h2 className="text-3xl font-bold font-headline">Curriculum</h2>
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {modules[0].lessons.map((item, index) => (
-            <div key={index} className={`p-6 rounded-lg flex items-center ${item.completed ? 'bg-primary/10 text-primary' : 'bg-card border border-border/20'}`}>
-                <div className={`mr-4 ${item.completed ? '' : 'text-muted-foreground'}`}>
-                    {item.completed ? <CheckCircle className="w-8 h-8" /> : <Milestone className="w-8 h-8" />}
-                </div>
-                <div>
-                    <p className={`font-semibold ${item.completed ? '' : 'text-foreground'}`}>{item.title}</p>
+        <div className="flex justify-between items-center mb-6">
+            <h2 className="text-3xl font-bold font-headline">Git & GitHub Roadmap</h2>
+            <div className="text-right">
+                <p className="font-semibold">Progress: {completedLessons} / {totalLessons} topics completed</p>
+                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                    <div className="bg-primary h-2.5 rounded-full" style={{ width: `${(completedLessons/totalLessons) * 100}%` }}></div>
                 </div>
             </div>
+        </div>
+
+        <div className="space-y-8">
+          {modules[0].lessons.map((lesson, index) => (
+            <div key={index}>
+              <div className={`p-6 rounded-lg border ${lesson.completed ? 'border-primary/30 bg-primary/5' : 'bg-card border-border/20'}`}>
+                <div className="flex justify-between">
+                  <div>
+                    <div className="flex items-center mb-2">
+                      {lesson.completed ? <CheckCircle className="w-6 h-6 text-primary mr-2" /> : <Milestone className="w-6 h-6 text-muted-foreground mr-2" />}
+                      <h3 className="text-xl font-bold font-headline">{index + 1}. {lesson.title}</h3>
+                    </div>
+                    <p className="text-muted-foreground ml-8">{lesson.subtitle}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm text-muted-foreground">{lesson.duration}</p>
+                    <span className={`inline-block mt-1 px-2 py-1 text-xs font-semibold rounded-full ${lesson.difficulty === 'Beginner' ? 'bg-green-100 text-green-800' : lesson.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}`}>
+                      {lesson.difficulty}
+                    </span>
+                  </div>
+                </div>
+                <div className="ml-8 mt-4">
+                  <p className="font-semibold">🎯 What you'll be able to do:</p>
+                  <p className="text-muted-foreground">{lesson.objective}</p>
+                </div>
+                <div className="ml-8 mt-6">
+                    <h4 className="font-semibold">A) Problem First (real world)</h4>
+                    <p className="text-muted-foreground">You're working on a project and need to keep track of changes without creating dozens of copies of the same file.</p>
+                    
+                    <h4 className="font-semibold mt-4">B) Concept</h4>
+                    <p className="text-muted-foreground">Let's learn the basic Git commands to initialize a repository, and track changes to your files: `git init`, `git add`, and `git commit`.</p>
+
+                    <h4 className="font-semibold mt-4">C) Visual Terminal Demo</h4>
+                    <TerminalPracticeBox commands={['git init', 'git status', 'git add app.js', 'git commit -m "Initial commit"']} />
+
+                    <h4 className="font-semibold mt-4">D) Hands-on Task</h4>
+                    <p className="text-muted-foreground">Let's create your first Git repository.</p>
+                    <TerminalPracticeBox commands={['mkdir my-project', 'cd my-project', 'git init', 'touch index.html', 'git add .', 'git commit -m "Add index.html"']} />
+
+                    <h4 className="font-semibold mt-4">E) Expected Output</h4>
+                    <div className="bg-gray-900 text-white p-4 rounded-lg my-4 font-mono text-sm">
+                        <p>[master (root-commit) 1234567] Add index.html</p>
+                        <p> 1 file changed, 0 insertions(+), 0 deletions(-)</p>
+                        <p> create mode 100644 index.html</p>
+                    </div>
+
+                    <h4 className="font-semibold mt-4">F) Mini Challenge</h4>
+                    <p className="text-muted-foreground">How would you see a log of all the commits you've made?</p>
+                    
+                    <h4 className="font-semibold mt-4">G) Interview Question</h4>
+                    <p className="text-muted-foreground">What is the difference between `git add .` and `git add -A`?</p>
+
+                    <RealDevOpsScenario>
+                        Every developer uses Git to manage their code. As a DevOps engineer, you will use Git to manage infrastructure as code, CI/CD pipelines, and much more.
+                    </RealDevOpsScenario>
+                </div>
+              </div>
+              {(index === 1 || index === 3) && labs &&
+                <div className="mt-8">
+                    <div className="p-6 rounded-lg border border-dashed border-primary/50 bg-primary/5">
+                        <div className="flex items-center mb-2">
+                            <Book className="w-6 h-6 text-primary mr-2" />
+                            <h3 className="text-xl font-bold font-headline">{labs[index === 1 ? 0 : 1].title}</h3>
+                        </div>
+                        <p className="text-muted-foreground ml-8">{labs[index === 1 ? 0 : 1].description}</p>
+                    </div>
+                </div>
+              }
+            </div>
           ))}
+
+          {capstone && 
+            <div className="mt-8">
+                <div className="p-6 rounded-lg border-2 border-primary bg-primary/10">
+                    <div className="flex items-center mb-2">
+                        <Star className="w-6 h-6 text-primary mr-2" />
+                        <h3 className="text-2xl font-bold font-headline">{capstone.title}</h3>
+                    </div>
+                    <p className="text-muted-foreground ml-8">{capstone.description}</p>
+                    <div className="ml-8 mt-4">
+                        <h4 className="font-semibold">Tasks:</h4>
+                        <ul className="list-disc list-inside text-muted-foreground">
+                            {capstone.tasks.map((task, i) => <li key={i}>{task}</li>)}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          }
         </div>
       </div>
     </div>

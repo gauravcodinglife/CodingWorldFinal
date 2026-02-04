@@ -1,187 +1,76 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { BookMarked, BrainCircuit, ListChecks, User } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
-import { getPersonalizedLearningPaths } from "../actions";
-import { platforms } from "@/lib/data";
-import type { GeneratePersonalizedLearningPathsOutput } from "@/ai/flows/generate-personalized-learning-paths";
-
-const FormSchema = z.object({
-  userProgress: z
-    .string()
-    .min(10, { message: "Please describe your progress in more detail." }),
-  userPreferences: z
-    .string()
-    .min(10, { message: "Please describe your preferences in more detail." }),
-});
 
 export function ProfileClient() {
-  const [isPending, startTransition] = useTransition();
-  const [recommendations, setRecommendations] =
-    useState<GeneratePersonalizedLearningPathsOutput | null>(null);
-  const { toast } = useToast();
-
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      userProgress: "Completed introduction to Docker and started learning about Kubernetes pods.",
-      userPreferences: "I prefer hands-on labs and visual diagrams over long texts. Interested in DevOps roles.",
-    },
-  });
-
-  function onSubmit(values: z.infer<typeof FormSchema>) {
-    setRecommendations(null);
-    startTransition(async () => {
-      const input = {
-        ...values,
-        availablePlatforms: platforms.map(p => p.name).join(', ')
-      }
-      const { data, error } = await getPersonalizedLearningPaths(input);
-      if (error) {
-        toast({
-          title: "Error",
-          description: error,
-          variant: "destructive",
-        });
-        return;
-      }
-      setRecommendations(data);
-    });
-  }
-
   return (
-    <div className="grid md:grid-cols-3 gap-8">
-      <div className="md:col-span-1">
-        <Card className="glass-card">
-          <CardHeader className="items-center text-center">
-            <div className="p-4 bg-primary/10 rounded-full mb-4">
-              <User className="w-12 h-12 text-primary" />
-            </div>
-            <CardTitle className="text-2xl font-headline">CodingWorld_User</CardTitle>
-            <CardDescription>Joined on {new Date().toLocaleDateString()}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4 text-sm">
-                <div className="flex items-center">
-                    <ListChecks className="w-4 h-4 mr-2 text-muted-foreground"/>
-                    <span><span className="font-bold">2</span> Topics Completed</span>
-                </div>
-                 <div className="flex items-center">
-                    <BookMarked className="w-4 h-4 mr-2 text-muted-foreground"/>
-                    <span><span className="font-bold">12</span> CLI Attempts</span>
-                </div>
-            </div>
-          </CardContent>
-        </Card>
+    <div className="space-y-8">
+      <div className="text-center">
+        <h1 className="font-headline text-4xl md:text-5xl font-bold">
+          User Persona
+        </h1>
+        <p className="text-lg text-muted-foreground mt-2 max-w-3xl mx-auto">
+          This page represents a user persona based on user research.
+        </p>
       </div>
 
-      <div className="md:col-span-2">
+      <Card className="glass-card">
+        <CardHeader>
+          <CardTitle>Quote</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <blockquote className="text-lg italic text-muted-foreground">
+            "the early bird gets the worm... or so they say!!"
+          </blockquote>
+        </CardContent>
+      </Card>
+
+      <Card className="glass-card">
+        <CardHeader>
+          <CardTitle>Bio</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">
+            Bruce is a marketing manager at a Series B startup based in San
+            Francisco. He was born and grew up in San Jose, CA. On his free time he
+            likes to go on the race track with close friends. Bruce is currently saving
+            up to buy a new car but his wife told him he'd have to fund it with a side
+            income.
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="grid md:grid-cols-2 gap-8">
         <Card className="glass-card">
           <CardHeader>
-            <CardTitle className="flex items-center">
-              <BrainCircuit className="w-6 h-6 mr-2 text-primary" />
-              Personalized Learning AI
-            </CardTitle>
-            <CardDescription>
-              Tell our AI about your progress and preferences to get tailored
-              recommendations.
-            </CardDescription>
+            <CardTitle>Needs</CardTitle>
           </CardHeader>
           <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="userProgress"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Your Progress Summary</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="e.g., 'I have finished the AWS S3 module and am comfortable with Docker basics...'"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="userPreferences"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Your Learning Preferences</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="e.g., 'I prefer visual learning and hands-on labs. My goal is to pass the GCP certification...'"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" disabled={isPending}>
-                  {isPending ? "Generating..." : "Generate My Path"}
-                </Button>
-              </form>
-            </Form>
+            <ul className="list-disc list-inside text-muted-foreground space-y-2">
+              <li>Generate new income flow</li>
+              <li>Sustain it long enough to buy the car of his dreams</li>
+              <li>Reach financial goal in three months</li>
+            </ul>
           </CardContent>
         </Card>
 
-        {(isPending || recommendations) && (
-            <div className="mt-8">
-                {isPending && (
-                    <div className="space-y-4">
-                         <Card className="glass-card"><CardContent className="p-6"><div className="space-y-2"><h3 className="font-bold">Generating Learning Paths...</h3><p className="text-sm text-muted-foreground">Our AI is crafting your personalized roadmap.</p></div></CardContent></Card>
-                         <Card className="glass-card"><CardContent className="p-6"><div className="space-y-2"><h3 className="font-bold">Generating Practice Exercises...</h3><p className="text-sm text-muted-foreground">Get ready to apply your knowledge.</p></div></CardContent></Card>
-                    </div>
-                )}
-                {recommendations && (
-                    <div className="space-y-4 animate-in fade-in-50 duration-500">
-                        <Card className="glass-card">
-                            <CardHeader>
-                                <CardTitle>Recommended Learning Paths</CardTitle>
-                            </CardHeader>
-                            <CardContent className="prose prose-sm prose-invert max-w-none text-muted-foreground whitespace-pre-line">
-                                {recommendations.learningPaths}
-                            </CardContent>
-                        </Card>
-                         <Card className="glass-card">
-                            <CardHeader>
-                                <CardTitle>Suggested Practice Exercises</CardTitle>
-                            </CardHeader>
-                            <CardContent className="prose prose-sm prose-invert max-w-none text-muted-foreground whitespace-pre-line">
-                                {recommendations.practiceExercises}
-                            </CardContent>
-                        </Card>
-                    </div>
-                )}
-            </div>
-        )}
+        <Card className="glass-card">
+          <CardHeader>
+            <CardTitle>Frustrations</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="list-disc list-inside text-muted-foreground space-y-2">
+              <li>Juggling time being a parent, marketing manager, and create a side hustle</li>
+              <li>Not completely sure what skills he can leverage for said hustle</li>
+              <li>Feels overwhelmed with all the information out there on creating a side hustle</li>
+            </ul>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
