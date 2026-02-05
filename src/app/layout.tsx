@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -35,10 +35,10 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased min-h-screen flex flex-col main-background">
-        <Header />
-        <main className="flex-1 w-full">{children}</main>
-        <Footer />
-        <Toaster />
+          <Header />
+          <main className="flex-1 w-full">{children}</main>
+          <Footer />
+          <Toaster />
       </body>
     </html>
   );

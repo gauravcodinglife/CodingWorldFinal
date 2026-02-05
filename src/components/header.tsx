@@ -28,8 +28,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-14 items-center px-4">
+    <header className="sticky top-0 z-50 w-full bg-bg/70 backdrop-blur-lg border-b border-white/10">
+      <div className="container mx-auto flex h-16 items-center px-4">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Layers className="h-6 w-6 text-primary" />
           <span className="font-bold font-headline">CodingWorld</span>
@@ -39,7 +39,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-primary"
+              className="transition-colors text-body hover:text-text"
             >
               {link.label}
             </Link>
@@ -47,10 +47,10 @@ export default function Header() {
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
-            <Button asChild variant="ghost" className="hidden md:inline-flex">
+            <Button asChild variant="ghost" className="hidden md:inline-flex text-text hover:bg-white/10">
               <Link href="/login">Log in</Link>
             </Button>
-            <Button asChild className="hidden md:inline-flex neon-hover-primary">
+            <Button asChild className="hidden md:inline-flex bg-btn-gradient text-gray-900 font-bold hover:scale-105 transition-transform">
               <Link href="/signup">Sign Up</Link>
             </Button>
 
@@ -101,7 +101,7 @@ export default function Header() {
       {isMenuOpen && (
         <div
           className={cn(
-            "md:hidden absolute top-14 left-0 w-full bg-background/95 backdrop-blur-lg border-b border-border/40",
+            "md:hidden absolute top-16 left-0 w-full bg-bg/95 backdrop-blur-lg",
             "animate-in fade-in-20 slide-in-from-top-5 duration-300"
           )}
         >
@@ -110,13 +110,13 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center rounded-lg p-2 transition-colors hover:bg-muted"
+                className="flex items-center rounded-lg p-2 transition-colors text-body hover:bg-white/10 hover:text-text"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="flex flex-col gap-2 mt-2 border-t pt-4">
+            <div className="flex flex-col gap-2 mt-2 border-t border-white/10 pt-4">
               <Button asChild variant="ghost">
                 <Link href="/login" onClick={() => setIsMenuOpen(false)}>Log in</Link>
               </Button>

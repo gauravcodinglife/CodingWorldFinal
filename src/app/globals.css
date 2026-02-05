@@ -4,125 +4,86 @@
 
 @layer base {
   :root {
-    --background: 227 38% 5%;
-    --background-end: 224 38% 8%;
-    --foreground: 225 100% 98%;
-
-    --card: 227 48% 10%;
-    --card-hover: 224 53% 17%;
-    --card-foreground: 225 100% 98%;
-
-    --popover: 227 38% 5%;
-    --popover-foreground: 225 100% 98%;
-
-    --primary: 184 100% 59%;
-    --primary-foreground: 214 60% 6%;
-
-    --secondary: 256 100% 68%;
-    --secondary-foreground: 225 100% 98%;
-
-    --muted: 225 14% 60%;
-    --muted-foreground: 225 27% 85%;
+    /* Custom Palette from User */
+    --bg: #080A15;
+    --glow-teal: #062A33;
+    --glow-purple: #16142A;
+    --text: #F3F6FF;
+    --body: #A9B0C2;
+    --muted: #7F879A;
+    --cyan: #2DEBFF;
+    --blue: #3BBEF7;
+    --violet: #8B5CF6;
+    --card: #101424;
+    --border-rgba: rgba(255, 255, 255, 0.10);
+    --btnGrad: linear-gradient(90deg, #37BDF8 0%, #8B5CF6 100%);
     
-    --accent: 184 100% 59%;
-    --accent-foreground: 225 100% 98%;
-    --accent-warm: 34 100% 71%;
-
-    --destructive: 0 63% 31%;
+    /* ShadCN UI Theme */
+    --background: 228 33% 7%; /* maps to --bg */
+    --foreground: 228 100% 98%; /* maps to --text */
+    
+    --card: 228 33% 10%; /* maps to --card */
+    --card-foreground: 228 100% 98%; /* maps to --text */
+    
+    --popover: 228 33% 7%;
+    --popover-foreground: 228 100% 98%;
+    
+    --primary: 198 93% 60%; /* maps to --blue */
+    --primary-foreground: 210 50% 6%; /* from button text */
+    
+    --secondary: 226 15% 71%; /* maps to --body */
+    --secondary-foreground: 228 100% 98%;
+    
+    --muted: 224 10% 55%; /* maps to --muted */
+    --muted-foreground: 226 15% 71%; /* maps to --body */
+    
+    --accent: 224 10% 55%;
+    --accent-foreground: 228 100% 98%;
+    
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     
-    --border: 225 100% 98%;
-    --input: 224 20% 21%;
-    --ring: 256 100% 68%;
-
+    --border: 231 15% 16%; /* approx from rgba(255,255,255,0.1) on bg */
+    --input: 231 15% 16%;
+    --ring: 198 93% 60%; /* maps to --blue for focus rings */
+    
     --radius: 0.5rem;
   }
 
-  .dark {
-    --background: 227 38% 5%;
-    --background-end: 224 38% 8%;
-    --foreground: 225 100% 98%;
-
-    --card: 227 48% 10%;
-    --card-hover: 224 53% 17%;
-    --card-foreground: 225 100% 98%;
-
-    --popover: 227 38% 5%;
-    --popover-foreground: 225 100% 98%;
-
-    --primary: 184 100% 59%;
-    --primary-foreground: 214 60% 6%;
-
-    --secondary: 256 100% 68%;
-    --secondary-foreground: 225 100% 98%;
-
-    --muted: 225 14% 60%;
-    --muted-foreground: 225 27% 85%;
-    
-    --accent: 184 100% 59%;
-    --accent-foreground: 225 100% 98%;
-    --accent-warm: 34 100% 71%;
-
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
-    
-    --border: 225 100% 98%;
-    --input: 224 20% 21%;
-    --ring: 256 100% 68%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border/15;
-  }
-  html {
-    @apply scroll-smooth;
-    scroll-padding-top: 3.5rem;
-  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-bg text-body;
+    background:
+      radial-gradient(900px 600px at 12% 10%, rgba(6, 42, 51, 0.95), transparent 60%),
+      radial-gradient(900px 600px at 88% 12%, rgba(22, 20, 42, 0.95), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text;
   }
 }
 
 @layer utilities {
-  .main-background {
-    background: radial-gradient(900px 560px at 12% 6%, rgba(0, 214, 255, 0.16), transparent 60%),
-                  radial-gradient(900px 560px at 88% 10%, rgba(138, 92, 255, 0.18), transparent 60%),
-                  radial-gradient(900px 560px at 12% 40%, rgba(0, 214, 255, 0.12), transparent 62%),
-                  radial-gradient(900px 560px at 88% 50%, rgba(138, 92, 255, 0.12), transparent 62%),
-                  radial-gradient(900px 560px at 12% 72%, rgba(0, 214, 255, 0.10), transparent 62%),
-                  radial-gradient(900px 560px at 88% 82%, rgba(138, 92, 255, 0.10), transparent 62%),
-                  linear-gradient(180deg, #070A12 0%, #0B1020 100%);
+  .bg-btn-gradient {
+    background: var(--btnGrad);
+  }
+  
+  .text-gradient-stats {
+    background: linear-gradient(90deg, var(--blue) 0%, var(--violet) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.font-headline {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+.font-body {
+    font-family: 'Inter', sans-serif;
   }
 
-  .glass-card {
-    @apply bg-white/[.04] backdrop-blur-lg border border-white/10 rounded-2xl;
-  }
-  
-  .neon-hover {
-    @apply transition-shadow duration-300;
-  }
-  
-  .neon-hover:hover {
-    box-shadow: 0 0 5px hsl(var(--accent)), 0 0 10px hsl(var(--accent)), 0 0 15px hsl(var(--accent) / 0.5);
-  }
-  .neon-hover-primary {
-    @apply transition-shadow duration-300;
-  }
-  .neon-hover-primary:hover {
-     box-shadow: 0 0 5px hsl(var(--primary)), 0 0 10px hsl(var(--primary)), 0 0 15px hsl(var(--primary) / 0.5);
-  }
-  .bg-brand {
-    @apply bg-gradient-to-r from-cyan-400 to-purple-500;
-  }
-  .card-with-shine {
-    @apply relative overflow-hidden;
-  }
-  .card-with-shine::before {
-    content: '';
-    @apply absolute top-0 left-0 right-0 h-48;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
-    pointer-events: none;
-  }
+.neon-hover-primary:hover {
+    box-shadow: 0 0 5px var(--blue), 0 0 10px var(--blue), 0 0 15px var(--blue);
 }
