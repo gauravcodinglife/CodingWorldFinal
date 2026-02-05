@@ -23,10 +23,12 @@ export default {
       },
       colors: {
         background: "hsl(var(--background))",
+        "background-end": "hsl(var(--background-end))",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+          hover: "hsl(var(--card-hover))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -47,6 +49,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          warm: "hsl(var(--accent-warm))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -62,21 +65,17 @@ export default {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
+        "dot-red": "#FF5C7A",
+        "dot-yellow": "#FFC14A",
+        "dot-green": "#27E29C",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backgroundImage: {
+        "brand-gradient": "linear-gradient(135deg, #2DEBFF 0%, #8A5CFF 55%, #FFB86B 115%)",
       },
       keyframes: {
         "accordion-down": {
