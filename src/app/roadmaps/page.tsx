@@ -1,6 +1,8 @@
 'use client';
 import React, { useState, useEffect } from "react";
 import { STAGES, Stage, RoadmapCertificate } from "@/lib/roadmaps-data";
+import { quizData } from "@/lib/quiz-data";
+import { Quiz } from "@/components/ui/quiz";
 
 const CheckIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-cyan-300">
@@ -10,6 +12,7 @@ const CheckIcon = () => (
 
 export default function RoadmapsSection() {
   const [activeStage, setActiveStage] = useState<Stage | null>(null);
+  const [activeQuiz, setActiveQuiz] = useState<Stage | null>(null);
   const [completedStages, setCompletedStages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -60,7 +63,8 @@ export default function RoadmapsSection() {
               <div key={stage.id} id={stage.id}>
                 <StageCard 
                   stage={stage} 
-                  onClick={() => setActiveStage(stage)} 
+                  onExplore={() => setActiveStage(stage)} 
+                  onStartQuiz={() => setActiveQuiz(stage)}
                   isCompleted={completedStages.has(stage.id)}
                   onToggleComplete={() => handleToggleComplete(stage.id)}
                 />
@@ -70,12 +74,13 @@ export default function RoadmapsSection() {
         </div>
 
         <StageModal stage={activeStage} onClose={() => setActiveStage(null)} onChipClick={handleChipClick} />
+        <QuizModal stage={activeQuiz} onClose={() => setActiveQuiz(null)} />
       </div>
     </section>
   );
 }
 
-function StageCard({ stage, onClick, isCompleted, onToggleComplete }: { stage: Stage; onClick: () => void; isCompleted: boolean; onToggleComplete: () => void; }) {
+function StageCard({ stage, onExplore, onStartQuiz, isCompleted, onToggleComplete }: { stage: Stage; onExplore: () => void; onStartQuiz: () => void; isCompleted: boolean; onToggleComplete: () => void; }) {
   return (
     <div className="relative pl-20">
       <div className={`absolute left-6 top-1 h-6 w-6 rounded-full flex items-center justify-center ${isCompleted ? 'bg-cyan-900/50 border-2 border-cyan-400/90' : 'bg-slate-800 border-2 border-cyan-400/80'}`}>
@@ -95,10 +100,13 @@ function StageCard({ stage, onClick, isCompleted, onToggleComplete }: { stage: S
           <p className="mt-1 text-white/70 text-sm">{stage.build}</p>
         </div>
         <div className="mt-6 flex items-center gap-4">
-          <button onClick={onClick} className="inline-flex items-center justify-center rounded-lg border border-cyan-400/40 bg-cyan-400/10 px-5 py-2.5 text-sm font-medium text-cyan-200 hover:bg-cyan-400/20 transition">
+          <button onClick={onExplore} className="inline-flex items-center justify-center rounded-lg border border-cyan-400/40 bg-cyan-400/10 px-5 py-2.5 text-sm font-medium text-cyan-200 hover:bg-cyan-400/20 transition">
             Explore Stage
           </button>
-          <button onClick={onToggleComplete} disabled={isCompleted} className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-transparent px-5 py-2.5 text-sm font-medium text-white/70 transition enabled:hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed">
+          <button onClick={onStartQuiz} className="inline-flex items-center justify-center rounded-lg border border-purple-400/40 bg-purple-400/10 px-5 py-2.5 text-sm font-medium text-purple-200 hover:bg-purple-400/20 transition">
+            Start Quiz
+          </button>
+          <button onClick={onToggleComplete} disabled={isCompleted} className="ml-auto inline-flex items-center justify-center rounded-lg border border-white/20 bg-transparent px-5 py-2.5 text-sm font-medium text-white/70 transition enabled:hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed">
             {isCompleted ? 'Completed' : 'Mark as Done'}
           </button>
         </div>
@@ -125,17 +133,17 @@ function StageModal({ stage, onClose, onChipClick }: { stage: Stage | null; onCl
           <h2 className="text-xl font-bold text-white">{stage.title}</h2>
           <button onClick={onClose} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:bg-white/10 transition">Close</button>
         </div>
-        <div className="max-h-[75vh] overflow-y-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+        <div className="max-h-[75vh] overflow-y-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
           <Section title="📘 Topics to Learn">
             <ul className="list-disc list-inside space-y-2 text-sm text-white/70">{stage.modal.topics.map((item, i) => <li key={i}>{item}</li>)}</ul>
           </Section>
           <Section title="🧠 Concepts to Understand">
             <ul className="list-disc list-inside space-y-2 text-sm text-white/70">{stage.modal.concepts.map((item, i) => <li key={i}>{item}</li>)}</ul>
           </Section>
-          <Section title="🛠️ What You Should Be Able to Build">
+          <Section title="🛠️ What You Can Build">
             <ul className="list-disc list-inside space-y-2 text-sm text-white/70">{stage.modal.canBuild.map((item, i) => <li key={i}>{item}</li>)}</ul>
           </Section>
-          <div className="space-y-6">
+          <div className="space-y-8">
             <Section title="🔗 Depends On">
               <div className="flex flex-wrap gap-2">
                 {stage.modal.dependsOn.length > 0 ? stage.modal.dependsOn.map(id => (
@@ -159,6 +167,39 @@ function StageModal({ stage, onClose, onChipClick }: { stage: Stage | null; onCl
                         {stage.modal.certificates.map((cert, i) => <CertificateLink key={i} cert={cert} />)}
                     </div>
                 </Section>
+            </div>
+          )}
+        </div>
+      </div>
+      <button className="fixed inset-0 -z-10 cursor-default" aria-hidden="true" onClick={onClose} />
+    </div>
+  );
+}
+
+function QuizModal({ stage, onClose }: { stage: Stage | null; onClose: () => void; }) {
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    if (stage) window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [stage, onClose]);
+
+  if (!stage) return null;
+
+  const stageQuizData = quizData.find(q => q.id === stage.id);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" role="dialog" aria-modal="true">
+      <div className="w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0A0F1A] shadow-2xl">
+        <div className="flex items-center justify-between gap-4 border-b border-white/10 p-4">
+          <h2 className="text-lg font-bold text-white/90 px-2">{stage.title.split(' — ')[1]} Quiz</h2>
+          <button onClick={onClose} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:bg-white/10 transition">Close</button>
+        </div>
+        <div className="p-2">
+          {stageQuizData ? (
+            <Quiz questions={stageQuizData.questions} stageTitle={stage.title.split(' — ')[1]} />
+          ) : (
+            <div className="p-8 text-center text-white/70">
+              <p>No quiz available for this stage yet. Please check back later!</p>
             </div>
           )}
         </div>
