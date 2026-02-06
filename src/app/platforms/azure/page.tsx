@@ -122,7 +122,7 @@ export default function AzurePage() {
 
                     <h4 className="font-semibold mt-4">D) Hands-on Task</h4>
                     <p className="text-muted-foreground">Let's create your first Azure VM.</p>
-                    <TerminalPracticeBox commands={['az vm create --resource-group myResourceGroup --name myFirstAzureVM --image Win2019Datacenter --admin-username azureuser --admin-password 'YourPassword123!' ']} />
+                    <TerminalPracticeBox commands={['az vm create --resource-group myResourceGroup --name myFirstAzureVM --image Win2019Datacenter --admin-username azureuser --admin-password \'YourPassword123!\' ']} />
 
                     <h4 className="font-semibold mt-4">E) Expected Output</h4>
                     <div className="bg-gray-900 text-white p-4 rounded-lg my-4 font-mono text-sm">

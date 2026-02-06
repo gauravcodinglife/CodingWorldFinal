@@ -1,138 +1,199 @@
 'use client';
+import React, { useState, useEffect } from "react";
+import { STAGES, Stage, RoadmapCertificate } from "@/lib/roadmaps-data";
 
-import { useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { roadmaps } from "@/lib/roadmaps";
+const CheckIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 text-cyan-300">
+    <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.052-.143Z" clipRule="evenodd" />
+  </svg>
+);
 
-export default function RoadmapsPage() {
-    const [search, setSearch] = useState('');
-    const [level, setLevel] = useState('All Levels');
-    const [category, setCategory] = useState('All Categories');
-    const [duration, setDuration] = useState('All Durations');
+export default function RoadmapsSection() {
+  const [activeStage, setActiveStage] = useState<Stage | null>(null);
+  const [completedStages, setCompletedStages] = useState<Set<string>>(new Set());
 
-    const filteredRoadmaps = roadmaps.filter(roadmap => {
-        const matchesSearch = roadmap.title.toLowerCase().includes(search.toLowerCase()) || roadmap.description.toLowerCase().includes(search.toLowerCase());
-        const matchesLevel = level === 'All Levels' || roadmap.level === level;
-        const matchesCategory = category === 'All Categories' || roadmap.category === category;
-        const matchesDuration = duration === 'All Durations' || roadmap.duration === duration;
-        return matchesSearch && matchesLevel && matchesCategory && matchesDuration;
-    });
+  useEffect(() => {
+    const savedProgress = localStorage.getItem('roadmapProgress');
+    if (savedProgress) {
+      setCompletedStages(new Set(JSON.parse(savedProgress)));
+    }
+  }, []);
+
+  const handleToggleComplete = (stageId: string) => {
+    const newCompletedStages = new Set(completedStages);
+    if (newCompletedStages.has(stageId)) {
+      newCompletedStages.delete(stageId);
+    } else {
+      newCompletedStages.add(stageId);
+    }
+    setCompletedStages(newCompletedStages);
+    localStorage.setItem('roadmapProgress', JSON.stringify(Array.from(newCompletedStages)));
+  };
+
+  const handleChipClick = (e: React.MouseEvent, stageId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(stageId);
+    if (element) {
+      setActiveStage(null);
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 150);
+    }
+  };
 
   return (
-    <section className="w-full px-4 md:px-8 py-10">
-        <div className="max-w-6xl mx-auto">
-            {/* Header Card */}
-            <div className="rounded-xl border border-cyan-400/70 bg-gradient-to-r from-slate-900 via-slate-900 to-indigo-950 p-8 md:p-10 shadow-[0_0_0_1px_rgba(34,211,238,0.15)]">
-                <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
-                    Roadmaps
-                </h2>
-
-                <p className="mt-3 text-base md:text-xl text-body max-w-3xl">
-                    Browse guided paths with structured milestones, projects, and real-world skills.
-                </p>
-            </div>
-
-            {/* Filter Bar */}
-            <div className="mt-8 rounded-xl border border-white/10 bg-card/60 backdrop-blur px-4 md:px-6 py-5 shadow-lg">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    {/* Search */}
-                    <div className="md:col-span-1">
-                        <label className="sr-only" htmlFor="roadmap-search">Search</label>
-                        <input
-                            id="roadmap-search"
-                            type="text"
-                            placeholder='Search: "frontend", "devops", "java"...'
-                            className="w-full rounded-lg border border-white/10 bg-gray-900/40 px-4 py-3 text-text placeholder:text-muted outline-none focus:border-cyan-400/60"
-                            onChange={(e) => setSearch(e.target.value)}
-                            value={search}
-                        />
-                    </div>
-
-                    {/* Level */}
-                    <div>
-                        <label className="sr-only" htmlFor="roadmap-level">Level</label>
-                        <select
-                            id="roadmap-level"
-                            className="w-full rounded-lg border border-white/10 bg-gray-900/40 px-4 py-3 text-text outline-none focus:border-cyan-400/60"
-                            onChange={(e) => setLevel(e.target.value)}
-                            value={level}
-                        >
-                            <option>All Levels</option>
-                            <option>Beginner</option>
-                            <option>Intermediate</option>
-                            <option>Advanced</option>
-                        </select>
-                    </div>
-
-                    {/* Category */}
-                    <div>
-                        <label className="sr-only" htmlFor="roadmap-category">Category</label>
-                        <select
-                            id="roadmap-category"
-                            className="w-full rounded-lg border border-white/10 bg-gray-900/40 px-4 py-3 text-text outline-none focus:border-cyan-400/60"
-                            onChange={(e) => setCategory(e.target.value)}
-                            value={category}
-                        >
-                            <option>All Categories</option>
-                            <option>Frontend</option>
-                            <option>Backend</option>
-                            <option>DevOps</option>
-                            <option>Data</option>
-                        </select>
-                    </div>
-
-                    {/* Duration */}
-                    <div>
-                        <label className="sr-only" htmlFor="roadmap-duration">Duration</label>
-                        <select
-                            id="roadmap-duration"
-                            className="w-full rounded-lg border border-white/10 bg-gray-900/40 px-4 py-3 text-text outline-none focus:border-cyan-400/60"
-                            onChange={(e) => setDuration(e.target.value)}
-                            value={duration}
-                        >
-                            <option>All Durations</option>
-                            <option>1–2 weeks</option>
-                            <option>1 month</option>
-                            <option>2–3 months</option>
-                            <option>3+ months</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-                {filteredRoadmaps.map((roadmap) => (
-                <Card key={roadmap.title} className="flex flex-col hover:shadow-lg transition-shadow duration-300 bg-card border-white/10 text-text">
-                    <CardHeader>
-                    <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-4">
-                        {roadmap.icon}
-                        <CardTitle className="font-headline text-2xl">
-                            {roadmap.title}
-                        </CardTitle>
-                        </div>
-                        {roadmap.status && (
-                        <Badge variant={roadmap.status === 'New' ? 'default' : 'secondary'}> {roadmap.status}</Badge>
-                        )}
-                    </div>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                    <p className="text-muted">{roadmap.description}</p>
-                    </CardContent>
-                    <div className="p-6 pt-0">
-                    <div className="flex justify-between items-center text-sm text-muted">
-                        <div className="flex items-center gap-2">
-                        <span>{roadmap.level}</span>
-                        </div>
-                        <span>{roadmap.duration}</span>
-                    </div>
-                    </div>
-                </Card>
-                ))}
-            </div>
-
+    <section className="w-full px-4 md:px-8 py-10 bg-[#070B12] text-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="rounded-xl border border-cyan-400/70 bg-gradient-to-r from-slate-900 via-slate-900 to-indigo-950 p-8 md:p-10 shadow-[0_0_0_1px_rgba(34,211,238,0.15)]">
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">Roadmaps</h2>
+          <p className="mt-3 text-base md:text-xl text-white/70 max-w-3xl">
+            Track your progress through our guided learning paths. Your journey is saved automatically.
+          </p>
         </div>
+
+        <div className="mt-16 relative">
+          <div className="absolute left-9 top-0 h-full w-0.5 bg-cyan-400/20 rounded-full" />
+          <div className="absolute left-9 top-0 h-full w-0.5 bg-gradient-to-b from-cyan-400 via-blue-500 to-indigo-600 blur-sm animate-pulse" />
+
+          <div className="space-y-12">
+            {STAGES.map((stage) => (
+              <div key={stage.id} id={stage.id}>
+                <StageCard 
+                  stage={stage} 
+                  onClick={() => setActiveStage(stage)} 
+                  isCompleted={completedStages.has(stage.id)}
+                  onToggleComplete={() => handleToggleComplete(stage.id)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <StageModal stage={activeStage} onClose={() => setActiveStage(null)} onChipClick={handleChipClick} />
+      </div>
     </section>
   );
+}
+
+function StageCard({ stage, onClick, isCompleted, onToggleComplete }: { stage: Stage; onClick: () => void; isCompleted: boolean; onToggleComplete: () => void; }) {
+  return (
+    <div className="relative pl-20">
+      <div className={`absolute left-6 top-1 h-6 w-6 rounded-full flex items-center justify-center ${isCompleted ? 'bg-cyan-900/50 border-2 border-cyan-400/90' : 'bg-slate-800 border-2 border-cyan-400/80'}`}>
+        {isCompleted ? <CheckIcon /> : <div className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />}
+      </div>
+      <div className="rounded-xl border border-white/10 bg-slate-900/60 backdrop-blur-sm p-6 shadow-lg hover:border-cyan-400/30 transition-colors">
+        <h3 className="text-2xl font-bold text-white">{stage.title}</h3>
+        <p className="mt-2 text-white/60">{stage.why}</p>
+        <div className="mt-4">
+          <h4 className="font-semibold text-sm text-white/80">Key Skills:</h4>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {stage.skills.map((skill) => <Chip key={skill}>{skill}</Chip>)}
+          </div>
+        </div>
+        <div className="mt-4">
+          <h4 className="font-semibold text-sm text-white/80">You can build:</h4>
+          <p className="mt-1 text-white/70 text-sm">{stage.build}</p>
+        </div>
+        <div className="mt-6 flex items-center gap-4">
+          <button onClick={onClick} className="inline-flex items-center justify-center rounded-lg border border-cyan-400/40 bg-cyan-400/10 px-5 py-2.5 text-sm font-medium text-cyan-200 hover:bg-cyan-400/20 transition">
+            Explore Stage
+          </button>
+          <button onClick={onToggleComplete} disabled={isCompleted} className="inline-flex items-center justify-center rounded-lg border border-white/20 bg-transparent px-5 py-2.5 text-sm font-medium text-white/70 transition enabled:hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed">
+            {isCompleted ? 'Completed' : 'Mark as Done'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StageModal({ stage, onClose, onChipClick }: { stage: Stage | null; onClose: () => void; onChipClick: (e: React.MouseEvent, stageId: string) => void; }) {
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    if (stage) window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [stage, onClose]);
+
+  if (!stage) return null;
+
+  const findStageTitle = (id: string) => STAGES.find(s => s.id === id)?.title.split(' — ')[1] || id;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" role="dialog" aria-modal="true">
+      <div className="w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-[#0A0F1A] shadow-2xl">
+        <div className="flex items-center justify-between gap-4 border-b border-white/10 p-6">
+          <h2 className="text-xl font-bold text-white">{stage.title}</h2>
+          <button onClick={onClose} className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 hover:bg-white/10 transition">Close</button>
+        </div>
+        <div className="max-h-[75vh] overflow-y-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          <Section title="📘 Topics to Learn">
+            <ul className="list-disc list-inside space-y-2 text-sm text-white/70">{stage.modal.topics.map((item, i) => <li key={i}>{item}</li>)}</ul>
+          </Section>
+          <Section title="🧠 Concepts to Understand">
+            <ul className="list-disc list-inside space-y-2 text-sm text-white/70">{stage.modal.concepts.map((item, i) => <li key={i}>{item}</li>)}</ul>
+          </Section>
+          <Section title="🛠️ What You Should Be Able to Build">
+            <ul className="list-disc list-inside space-y-2 text-sm text-white/70">{stage.modal.canBuild.map((item, i) => <li key={i}>{item}</li>)}</ul>
+          </Section>
+          <div className="space-y-6">
+            <Section title="🔗 Depends On">
+              <div className="flex flex-wrap gap-2">
+                {stage.modal.dependsOn.length > 0 ? stage.modal.dependsOn.map(id => (
+                  <a key={id} href={`#${id}`} onClick={(e) => onChipClick(e, id)}><Chip clickable>{findStageTitle(id)}</Chip></a>
+                )) : <p className="text-sm text-white/50">Nothing! This is the starting point.</p>}
+              </div>
+            </Section>
+            <Section title="🚀 Unlocks Next">
+              <div className="flex flex-wrap gap-2">
+                {stage.modal.unlocks.length > 0 ? stage.modal.unlocks.map(id => (
+                  <a key={id} href={`#${id}`} onClick={(e) => onChipClick(e, id)}><Chip clickable>{findStageTitle(id)}</Chip></a>
+                )) : <p className="text-sm text-white/50">The end of this roadmap path.</p>}
+              </div>
+            </Section>
+          </div>
+
+          {stage.modal.certificates.length > 0 && (
+            <div className="md:col-span-2">
+                <Section title="🎓 Recommended Certificates">
+                    <div className="grid gap-3">
+                        {stage.modal.certificates.map((cert, i) => <CertificateLink key={i} cert={cert} />)}
+                    </div>
+                </Section>
+            </div>
+          )}
+        </div>
+      </div>
+      <button className="fixed inset-0 -z-10 cursor-default" aria-hidden="true" onClick={onClose} />
+    </div>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h3 className="mb-3 text-base font-semibold text-white/90 flex items-center gap-2">
+        <span>{title.split(' ')[0]}</span>
+        <span>{title.substring(title.indexOf(' ') + 1)}</span>
+      </h3>
+      {children}
+    </div>
+  );
+}
+
+function Chip({ children, clickable }: { children: React.ReactNode; clickable?: boolean }) {
+  const baseClasses = "inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/70";
+  const clickableClasses = clickable ? "transition hover:bg-white/10 hover:border-cyan-400/30 cursor-pointer" : "";
+  return <span className={`${baseClasses} ${clickableClasses}`}>{children}</span>;
+}
+
+function CertificateLink({ cert }: { cert: RoadmapCertificate }) {
+    return (
+        <a href={cert.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm hover:border-cyan-400/30 transition">
+            <div>
+                <p className="font-medium text-white/90">{cert.title}</p>
+                <p className="text-xs text-white/60">{cert.provider}</p>
+            </div>
+            <span className="text-xs text-cyan-300">View</span>
+        </a>
+    );
 }

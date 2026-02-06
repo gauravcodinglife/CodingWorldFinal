@@ -127,7 +127,7 @@ export default function DockerPage() {
                     <h4 className="font-semibold mt-4">E) Expected Output</h4>
                     <div className="bg-gray-900 text-white p-4 rounded-lg my-4 font-mono text-sm">
                         <p>CONTAINER ID   IMAGE      COMMAND                  CREATED          STATUS          PORTS                NAMES</p>
-                        <p>1a2b3c4d5e6f   my-nginx   "/docker-entrypoint...."   2 seconds ago    Up 1 second     0.0.0.0:80->80/tcp   eager_goldstine</p>
+                        <p>1a2b3c4d5e6f   my-nginx   "/docker-entrypoint...."   2 seconds ago    Up 1 second     0.0.0.0:80-&gt;80/tcp   eager_goldstine</p>
                     </div>
 
                     <h4 className="font-semibold mt-4">F) Mini Challenge</h4>
