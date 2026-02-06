@@ -39,9 +39,9 @@ const stats = [
     label: "CLI Commands",
   },
   {
-    icon: <Activity className="w-8 h-8 text-primary" />,
-    value: "20+",
-    label: "Simulations",
+    icon: <BookOpen className="w-8 h-8 text-primary" />,
+    value: "10+",
+    label: "Certifications",
   },
   {
     icon: <BookOpen className="w-8 h-8 text-primary" />,
