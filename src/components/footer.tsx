@@ -14,6 +14,7 @@ const footerLinks = {
   company: [
     { href: "/#about", label: "About" },
     { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/terms-of-service", label: "Terms & Conditions" },
   ],
 };
 

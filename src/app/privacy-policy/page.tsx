@@ -5,45 +5,121 @@ export default function PrivacyPolicy() {
         Privacy Policy
       </h1>
       <div className="max-w-3xl mx-auto prose dark:prose-invert">
+        <p>Last Updated: February 7, 2026</p>
         <p>
-          Your privacy is important to us. It is CodingWorld's policy to respect
-          your privacy regarding any information we may collect from you across our
-          website, and other sites we own and operate.
+          Welcome to our website. Your privacy is very important to us. This
+          Privacy Policy explains how we collect, use, and protect your
+          information when you visit and use our platform.
         </p>
         <p>
-          We only ask for personal information when we truly need it to provide a
-          service to you. We collect it by fair and lawful means, with your
-          knowledge and consent. We also let you know why we’re collecting it and
-          how it will be used.
+          By using this website, you agree to the terms of this Privacy
+          Policy.
+        </p>
+
+        <h2>1. Information We Collect</h2>
+        <p>We may collect the following types of information:</p>
+
+        <h3>a) Personal Information</h3>
+        <p>When you:</p>
+        <ul>
+          <li>Contact us via forms</li>
+          <li>Subscribe to newsletters</li>
+          <li>Create an account</li>
+          <li>Send us an email</li>
+        </ul>
+        <p>We may collect:</p>
+        <ul>
+          <li>Name</li>
+          <li>Email address</li>
+          <li>Any message or information you provide</li>
+        </ul>
+
+        <h3>b) Non-Personal Information</h3>
+        <p>We automatically collect:</p>
+        <ul>
+          <li>Browser type</li>
+          <li>Device type</li>
+          <li>IP address</li>
+          <li>Pages visited</li>
+          <li>Time spent on pages</li>
+          <li>Referring website</li>
+        </ul>
+        <p>This data helps us improve user experience.</p>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>We use your information to:</p>
+        <ul>
+          <li>Improve our website content and experience</li>
+          <li>Respond to your queries and messages</li>
+          <li>Send important updates (if subscribed)</li>
+          <li>Monitor website performance and analytics</li>
+          <li>Prevent misuse and ensure security</li>
+        </ul>
+        <p>We do not sell, trade, or rent your personal data to anyone.</p>
+
+        <h2>3. Cookies</h2>
+        <p>Our website may use cookies to:</p>
+        <ul>
+          <li>Enhance user experience</li>
+          <li>Store preferences</li>
+          <li>Analyze traffic using analytics tools</li>
+        </ul>
+        <p>You can disable cookies in your browser settings if you prefer.</p>
+
+        <h2>4. Third-Party Services</h2>
+        <p>We may use third-party services such as:</p>
+        <ul>
+          <li>Google Analytics</li>
+          <li>Hosting providers</li>
+          <li>Authentication services</li>
+        </ul>
+        <p>
+          These services may collect data according to their own privacy
+          policies.
+        </p>
+
+        <h2>5. Data Security</h2>
+        <p>
+          We implement appropriate security measures to protect your data from
+          unauthorized access, alteration, or disclosure.
         </p>
         <p>
-          We only retain collected information for as long as necessary to provide
-          you with your requested service. What data we store, we’ll protect
-          within commercially acceptable means to prevent loss and theft, as well
-          as unauthorized access, disclosure, copying, use or modification.
+          However, no method of transmission over the Internet is 100%
+          secure.
+        </p>
+
+        <h2>6. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Request access to your data</li>
+          <li>Request deletion of your data</li>
+          <li>Opt out of emails or communication</li>
+        </ul>
+        <p>You can contact us anytime regarding your data.</p>
+
+        <h2>7. Children’s Privacy</h2>
+        <p>
+          This website is not intended for children under the age of 13. We do
+          not knowingly collect data from children.
+        </p>
+
+        <h2>8. Changes to This Privacy Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. Changes will be
+          posted on this page with an updated date.
+        </p>
+
+        <h2>9. Contact Us</h2>
+        <p>
+          If you have any questions about this Privacy Policy, you can contact
+          us at:
         </p>
         <p>
-          We don’t share any personally identifying information publicly or with
-          third-parties, except when required to by law.
+          Email:{" "}
+          <a href="mailto:codingaurav85@gmail.com">
+            codingaurav85@gmail.com
+          </a>
         </p>
-        <p>
-          Our website may link to external sites that are not operated by us. Please
-          be aware that we have no control over the content and practices of these
-          sites, and cannot accept responsibility or liability for their
-          respective privacy policies.
-        </p>
-        <p>
-          You are free to refuse our request for your personal information, with
-          the understanding that we may be unable to provide you with some of your
-          desired services.
-        </p>
-        <p>
-          Your continued use of our website will be regarded as acceptance of our
-          practices around privacy and personal information. If you have any
-          questions about how we handle user data and personal information, feel
-          free to contact us.
-        </p>
-        <p>This policy is effective as of 1 January 2024.</p>
       </div>
     </main>
   );
