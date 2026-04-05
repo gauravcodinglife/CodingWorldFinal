@@ -1,10 +1,12 @@
+"use client";
 
-import { Milestone, CheckCircle, ArrowRight, Book, ShieldCheck, Star } from "lucide-react";
+import { Milestone, CheckCircle, ArrowRight, Book, Star } from "lucide-react";
 import Link from "next/link";
 import { tracks } from "@/lib/learning-tracks";
 import { Explainer } from "@/components/explainer";
+import { MarkCompleteButton } from "@/components/lesson-section";
+import { useLessonProgress } from "@/hooks/use-lesson-progress";
 
-// Placeholder for a new component that can be created later
 const TerminalPracticeBox = ({ commands }: { commands: string[] }) => (
   <div className="bg-gray-900 text-white p-4 rounded-lg my-4 font-mono text-sm">
     <p className="text-gray-400">// Terminal Practice</p>
@@ -14,7 +16,6 @@ const TerminalPracticeBox = ({ commands }: { commands: string[] }) => (
   </div>
 );
 
-// Placeholder for a new component
 const RealDevOpsScenario = ({ children }: { children: React.ReactNode }) => (
   <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 my-4 rounded-r-lg">
     <p className="font-bold">🔧 In a Real Job:</p>
@@ -23,16 +24,15 @@ const RealDevOpsScenario = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function KubernetesPage() {
+  const { completedIds, toggleLesson, loading } = useLessonProgress("kubernetes");
 
-  const track = tracks.find(t => t.id === 'kubernetes');
-
-  if (!track) {
-    return <div>Track not found</div>;
-  }
+  const track = tracks.find(t => t.id === "kubernetes");
+  if (!track) return <div>Track not found</div>;
 
   const { title, description, skills, modules, labs, capstone } = track;
   const totalLessons = modules[0].lessons.length;
-  const completedLessons = modules[0].lessons.filter(l => l.completed).length;
+  const completedCount = completedIds.size;
+  const pct = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -40,9 +40,7 @@ export default function KubernetesPage() {
         <div className="flex flex-col md:flex-row items-start justify-between">
           <div className="md:w-2/3">
             <h1 className="text-4xl font-bold font-headline tracking-tight text-primary">{title}</h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-              {description}
-            </p>
+            <p className="mt-4 text-lg text-muted-foreground">{description}</p>
             <div className="mt-8">
               <Link href="#" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90">
                 Start Learning <ArrowRight className="ml-2 h-5 w-5" />
@@ -78,100 +76,109 @@ export default function KubernetesPage() {
 
       <div className="mt-12">
         <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl font-bold font-headline">Kubernetes Roadmap</h2>
-            <div className="text-right">
-                <p className="font-semibold">Progress: {completedLessons} / {totalLessons} topics completed</p>
-                <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                    <div className="bg-primary h-2.5 rounded-full" style={{ width: `${(completedLessons/totalLessons) * 100}%` }}></div>
-                </div>
+          <h2 className="text-3xl font-bold font-headline">Kubernetes Roadmap</h2>
+          <div className="text-right">
+            <p className="font-semibold">
+              Progress: <span className="text-primary">{completedCount}</span> / {totalLessons} lessons
+              {pct > 0 && <span className="text-muted-foreground text-sm ml-1">({pct}%)</span>}
+            </p>
+            <div className="w-48 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mt-1">
+              <div className="bg-primary h-2.5 rounded-full transition-all duration-500" style={{ width: pct + "%" }} />
             </div>
+          </div>
         </div>
 
         <div className="space-y-8">
-          {modules[0].lessons.map((lesson, index) => (
-            <div key={index}>
-              <div className={`p-6 rounded-lg border ${lesson.completed ? 'border-primary/30 bg-primary/5' : 'bg-card border-border/20'}`}>
-                <div className="flex justify-between">
-                  <div>
-                    <div className="flex items-center mb-2">
-                      {lesson.completed ? <CheckCircle className="w-6 h-6 text-primary mr-2" /> : <Milestone className="w-6 h-6 text-muted-foreground mr-2" />}
-                      <h3 className="text-xl font-bold font-headline">{index + 1}. {lesson.title}</h3>
+          {modules[0].lessons.map((lesson, index) => {
+            const done = completedIds.has(index);
+            return (
+              <div key={index}>
+                <div className={"p-6 rounded-lg border transition-colors " + (done ? "border-green-500/40 bg-green-500/5" : "bg-card border-border/20")}>
+                  <div className="flex justify-between">
+                    <div>
+                      <div className="flex items-center mb-2">
+                        {done ? <CheckCircle className="w-6 h-6 text-green-500 mr-2" /> : <Milestone className="w-6 h-6 text-muted-foreground mr-2" />}
+                        <h3 className="text-xl font-bold font-headline">{index + 1}. {lesson.title}</h3>
+                      </div>
+                      <p className="text-muted-foreground ml-8">{lesson.subtitle}</p>
                     </div>
-                    <p className="text-muted-foreground ml-8">{lesson.subtitle}</p>
+                    <div className="text-right">
+                      <p className="text-sm text-muted-foreground">{lesson.duration}</p>
+                      <span className={"inline-block mt-1 px-2 py-1 text-xs font-semibold rounded-full " + (lesson.difficulty === "Beginner" ? "bg-green-100 text-green-800" : lesson.difficulty === "Intermediate" ? "bg-yellow-100 text-yellow-800" : "bg-red-100 text-red-800")}>
+                        {lesson.difficulty}
+                      </span>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-sm text-muted-foreground">{lesson.duration}</p>
-                    <span className={`inline-block mt-1 px-2 py-1 text-xs font-semibold rounded-full ${lesson.difficulty === 'Beginner' ? 'bg-green-100 text-green-800' : lesson.difficulty === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}`}>
-                      {lesson.difficulty}
-                    </span>
+                  <div className="ml-8 mt-4">
+                    <p className="font-semibold">🎯 What you&apos;ll be able to do:</p>
+                    <p className="text-muted-foreground">{lesson.objective}</p>
                   </div>
-                </div>
-                <div className="ml-8 mt-4">
-                  <p className="font-semibold">🎯 What you'll be able to do:</p>
-                  <p className="text-muted-foreground">{lesson.objective}</p>
-                </div>
-                <div className="ml-8 mt-6">
+                  <div className="ml-8 mt-6">
                     <h4 className="font-semibold">A) Problem First (real world)</h4>
-                    <p className="text-muted-foreground">You have a containerized application, but you need to manage it at scale, ensuring it's always running and can handle traffic.</p>
-                    
+                    <p className="text-muted-foreground">You have a containerized application, but you need to manage it at scale, ensuring it&apos;s always running and can handle traffic.</p>
+
                     <h4 className="font-semibold mt-4">B) Concept</h4>
-                    <p className="text-muted-foreground">Let's learn the basics of Kubernetes by deploying a simple application using `kubectl`, the command-line tool for Kubernetes.</p>
+                    <p className="text-muted-foreground">Let&apos;s learn the basics of Kubernetes by deploying a simple application using kubectl, the command-line tool for Kubernetes.</p>
 
                     <h4 className="font-semibold mt-4">C) Visual Terminal Demo</h4>
-                    <TerminalPracticeBox commands={['kubectl create deployment my-app --image=nginx', 'kubectl get pods', 'kubectl expose deployment my-app --port=80 --type=LoadBalancer']} />
+                    <TerminalPracticeBox commands={["kubectl create deployment my-app --image=nginx", "kubectl get pods", "kubectl expose deployment my-app --port=80 --type=LoadBalancer"]} />
 
                     <h4 className="font-semibold mt-4">D) Hands-on Task</h4>
-                    <p className="text-muted-foreground">Let's deploy a simple NGINX web server on Kubernetes.</p>
-                    <TerminalPracticeBox commands={['kubectl run my-nginx --image=nginx', 'kubectl get pods', 'kubectl expose pod my-nginx --port 80 --name my-nginx-service']} />
+                    <p className="text-muted-foreground">Let&apos;s deploy a simple NGINX web server on Kubernetes.</p>
+                    <TerminalPracticeBox commands={["kubectl run my-nginx --image=nginx", "kubectl get pods", "kubectl expose pod my-nginx --port 80 --name my-nginx-service"]} />
 
                     <h4 className="font-semibold mt-4">E) Expected Output</h4>
                     <div className="bg-gray-900 text-white p-4 rounded-lg my-4 font-mono text-sm">
-                        <p>NAME       READY   STATUS    RESTARTS   AGE</p>
-                        <p>my-nginx   1/1     Running   0          5s</p>
+                      <p>NAME       READY   STATUS    RESTARTS   AGE</p>
+                      <p>my-nginx   1/1     Running   0          5s</p>
                     </div>
 
                     <h4 className="font-semibold mt-4">F) Mini Challenge</h4>
                     <p className="text-muted-foreground">How would you scale your application to run 3 replicas?</p>
-                    
+
                     <h4 className="font-semibold mt-4">G) Interview Question</h4>
                     <p className="text-muted-foreground">What is the difference between a Pod and a Deployment in Kubernetes?</p>
 
                     <RealDevOpsScenario>
-                        As a DevOps engineer, you'll use Kubernetes to automate the deployment, scaling, and management of containerized applications, ensuring high availability and resilience.
+                      As a DevOps engineer, you&apos;ll use Kubernetes to automate the deployment, scaling, and management of containerized applications, ensuring high availability and resilience.
                     </RealDevOpsScenario>
+                  </div>
+                  <div className="mt-6 flex justify-end">
+                    <MarkCompleteButton lessonIndex={index} isCompleted={done} loading={loading} onToggle={toggleLesson} />
+                  </div>
+                </div>
+                {(index === 2 || index === 5) && labs && (
+                  <div className="mt-8">
+                    <div className="p-6 rounded-lg border border-dashed border-primary/50 bg-primary/5">
+                      <div className="flex items-center mb-2">
+                        <Book className="w-6 h-6 text-primary mr-2" />
+                        <h3 className="text-xl font-bold font-headline">{labs[index === 2 ? 0 : 1].title}</h3>
+                      </div>
+                      <p className="text-muted-foreground ml-8">{labs[index === 2 ? 0 : 1].description}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+          {capstone && (
+            <div className="mt-8">
+              <div className="p-6 rounded-lg border-2 border-primary bg-primary/10">
+                <div className="flex items-center mb-2">
+                  <Star className="w-6 h-6 text-primary mr-2" />
+                  <h3 className="text-2xl font-bold font-headline">{capstone.title}</h3>
+                </div>
+                <p className="text-muted-foreground ml-8">{capstone.description}</p>
+                <div className="ml-8 mt-4">
+                  <h4 className="font-semibold">Tasks:</h4>
+                  <ul className="list-disc list-inside text-muted-foreground">
+                    {capstone.tasks.map((task, i) => <li key={i}>{task}</li>)}
+                  </ul>
                 </div>
               </div>
-              {(index === 2 || index === 5) && labs &&
-                <div className="mt-8">
-                    <div className="p-6 rounded-lg border border-dashed border-primary/50 bg-primary/5">
-                        <div className="flex items-center mb-2">
-                            <Book className="w-6 h-6 text-primary mr-2" />
-                            <h3 className="text-xl font-bold font-headline">{labs[index === 2 ? 0 : 1].title}</h3>
-                        </div>
-                        <p className="text-muted-foreground ml-8">{labs[index === 2 ? 0 : 1].description}</p>
-                    </div>
-                </div>
-              }
             </div>
-          ))}
-
-          {capstone && 
-            <div className="mt-8">
-                <div className="p-6 rounded-lg border-2 border-primary bg-primary/10">
-                    <div className="flex items-center mb-2">
-                        <Star className="w-6 h-6 text-primary mr-2" />
-                        <h3 className="text-2xl font-bold font-headline">{capstone.title}</h3>
-                    </div>
-                    <p className="text-muted-foreground ml-8">{capstone.description}</p>
-                    <div className="ml-8 mt-4">
-                        <h4 className="font-semibold">Tasks:</h4>
-                        <ul className="list-disc list-inside text-muted-foreground">
-                            {capstone.tasks.map((task, i) => <li key={i}>{task}</li>)}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-          }
+          )}
         </div>
       </div>
     </div>

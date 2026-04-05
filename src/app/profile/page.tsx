@@ -1,9 +1,14 @@
 
 import { ProfileClient } from "./profile-client";
 
+export const metadata = {
+  title: "Student Profile | CodingWorld",
+  description: "Track your learning progress across all courses.",
+};
+
 export default function ProfilePage() {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="w-full">
       <ProfileClient />
     </div>
   );

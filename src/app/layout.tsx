@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { AuthProvider } from "@/context/auth-context";
 
 export const metadata: Metadata = {
   title: "CodingWorld",
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -35,10 +36,12 @@ export default function RootLayout({
         />
       </head>
       <body className="font-body antialiased min-h-screen flex flex-col main-background">
-          <Header />
-          <main className="flex-1 w-full">{children}</main>
-          <Footer />
-          <Toaster />
+          <AuthProvider>
+            <Header />
+            <main className="flex-1 w-full">{children}</main>
+            <Footer />
+            <Toaster />
+          </AuthProvider>
       </body>
     </html>
   );
