@@ -1,4 +1,4 @@
-# **App Name**: Cloud Dojo
+# **App Name**: Coding World
 
 ## Core Features:
 
