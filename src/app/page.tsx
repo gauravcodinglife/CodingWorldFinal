@@ -25,6 +25,7 @@ import { tracks } from "@/lib/learning-tracks";
 import { TrackCard } from "@/components/track-card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { AnimatedTerminalText } from "@/components/animated-terminal-text";
+import { NeonRibbonBackground } from "@/components/neon-ribbon";
 import ScrollAnimation from "@/components/ui/scroll-animation";
 
 const stats = [
@@ -82,13 +83,17 @@ export default function Home() {
     <main>
       {/* Hero Section */}
       <ScrollAnimation>
-        <section className="w-full px-4 md:px-8 py-20 md:py-28">
-          <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <section className="relative overflow-hidden w-full px-4 md:px-8 py-20 md:py-28 bg-bg">
+          <div className="absolute inset-0 pointer-events-none z-0">
+            <NeonRibbonBackground />
+            <div className="absolute inset-0 bg-black/10 z-10" />
+          </div>
+          <div className="relative z-20 container mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left">
               <div className="inline-block bg-gray-800 rounded-full px-4 py-2 text-sm font-semibold text-cyan mb-4 border border-cyan-400/30">
                 Learn faster with interactive tracks
               </div>
-              <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4" style={{ lineHeight: 1.1 }}>
+              <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-4">
                 Master the Cloud,
                 One <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue to-violet">Command</span>
                 at a Time
