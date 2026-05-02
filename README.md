@@ -32,9 +32,28 @@ Stop reading about commands. Start typing them. Our simulated terminal validates
 *Figure 2: AI-powered CLI practice environment.*
 
 ### 🗺️ Structured Learning Roadmaps
+
+*   30 Days to Cloud Engineer: A day-by-day breakdown of AWS, Networking, and Security.
+*   30 Days to DevOps Engineer: Linux → Git → Docker → K8s → Terraform → Monitoring.
+*   Role-Based Tracks: DevOps, Backend, Frontend, and Security specializations.
+### 🗺️ Structured Learning Roadmaps
+
 From "Hello World" to "System Design." We offer guided paths for every career stage.
-*   **30 Days to Cloud Engineer:** A day-by-day breakdown of AWS, Networking, and Security.
-*   **Role-Based Tracks:** DevOps, Backend, Frontend, and Security specializations.
+
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <h4>🛠️ 30 Days to DevOps Engineer</h4>
+      <img src="https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13" width="100%" />
+    </td>
+    <td align="center" width="50%">
+      <h4>☁️ 30 Days to Cloud Engineer</h4>
+      <img src="https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb" width="100%" />
+    </td>
+  </tr>
+</table>
+
+*Figure 3: Comprehensive 30-day learning roadmaps.*
 
 <img width="1270" height="3957" alt="image" src="https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb" />
 
@@ -45,8 +64,8 @@ Deep-dive modules with "Problem-First" learning methodology.
 *   30 Days to Cloud Engineer: A day-by-day breakdown of AWS, Networking, and Security.
 *   30 Days to DevOps Engineer: Linux → Git → Docker → K8s → Terraform → Monitoring.
 *   Role-Based Tracks: DevOps, Backend, Frontend, and Security specializations.
-*   
-| ![DevOps Roadmap](https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13) | ![Cloud Roadmap](https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb) |
+   
+| ![DevOps Roadmap](https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13) 
 
 
 *Figure 4: Modular learning tracks for various technologies.*
