@@ -38,12 +38,12 @@ From "Hello World" to "System Design." We offer guided paths for every career st
 <table>
   <tr>
     <td align="center" valign="top" width="50%">
-      <h4>️ 30 Days to DevOps Engineer</h4>
-      <img src="https://github.com/user-attachments/assets/e5c53b7b-fca3-4f22-b7f9-939ebf66d4c1" width="400" style="max-width: 100%; height: auto;" alt="DevOps Roadmap" />
+      <h4>🛠️ 30 Days to DevOps Engineer</h4>
+      <img src="https://github.com/user-attachments/assets/e5c53b7b-fca3-4f22-b7f9-939ebf66d4c1" width="600" style="max-width: 100%; height: auto;" alt="DevOps Roadmap" />
     </td>
     <td align="center" valign="top" width="50%">
-      <h4>️ 30 Days to Cloud Engineer</h4>
-      <img src="https://github.com/user-attachments/assets/a1feaa06-aee8-4e7f-bd42-5b13033d153c" width="400" style="max-width: 100%; height: auto;" alt="Cloud Roadmap" />
+      <h4>☁️ 30 Days to Cloud Engineer</h4>
+      <img src="https://github.com/user-attachments/assets/a1feaa06-aee8-4e7f-bd42-5b13033d153c" width="600" style="max-width: 100%; height: auto;" alt="Cloud Roadmap" />
     </td>
   </tr>
 </table>
