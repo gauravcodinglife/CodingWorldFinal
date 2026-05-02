@@ -14,8 +14,8 @@
 Traditional learning is passive. **CodingWorld** is active.
 We bridge the gap between theory and practice by providing a **Simulated CLI Environment** and **Live Dashboard Simulations**. Users don't just watch videos; they type commands, configure infrastructure, and solve real-world scenarios in a safe, sandboxed environment.
 
-![Platform Hero](<img width="1878" height="892" alt="image" src="https://github.com/user-attachments/assets/ce0ef702-9426-444a-92f4-bf38572558e7" />
-)
+<img width="1878" height="892" alt="image" src="https://github.com/user-attachments/assets/dbafea34-825b-444d-b5fd-7e9f618e28f1" />
+
 *Figure 1: Interactive landing page with simulated terminal.*
 
 ---
