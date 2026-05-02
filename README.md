@@ -33,40 +33,30 @@ Stop reading about commands. Start typing them. Our simulated terminal validates
 
 ### 🗺️ Structured Learning Roadmaps
 
-*   30 Days to Cloud Engineer: A day-by-day breakdown of AWS, Networking, and Security.
-*   30 Days to DevOps Engineer: Linux → Git → Docker → K8s → Terraform → Monitoring.
-*   Role-Based Tracks: DevOps, Backend, Frontend, and Security specializations.
-### 🗺️ Structured Learning Roadmaps
-
 From "Hello World" to "System Design." We offer guided paths for every career stage.
 
 <table>
   <tr>
     <td align="center" width="50%">
       <h4>🛠️ 30 Days to DevOps Engineer</h4>
-      <img src="https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13" width="100%" />
+      <img src="https://github.com/user-attachments/assets/e5c53b7b-fca3-4f22-b7f9-939ebf66d4c1" width="100%" style="max-width: 100%; height: auto;" alt="DevOps Roadmap" />
     </td>
     <td align="center" width="50%">
       <h4>☁️ 30 Days to Cloud Engineer</h4>
-      <img src="https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb" width="100%" />
+      <img src="https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb" width="100%" style="max-width: 100%; height: auto;" alt="Cloud Roadmap" />
     </td>
   </tr>
 </table>
 
 *Figure 3: Comprehensive 30-day learning roadmaps.*
 
-<img width="1270" height="3957" alt="image" src="https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb" />
-
-*Figure 3: Comprehensive 30-day Cloud and DevOps Engineer roadmap.*
-
 ### 🎓 Comprehensive Learning Tracks
 Deep-dive modules with "Problem-First" learning methodology.
-*   30 Days to Cloud Engineer: A day-by-day breakdown of AWS, Networking, and Security.
-*   30 Days to DevOps Engineer: Linux → Git → Docker → K8s → Terraform → Monitoring.
-*   Role-Based Tracks: DevOps, Backend, Frontend, and Security specializations.
+*   **Linux Fundamentals:** File systems, permissions, and shell scripting.
+*   **Containerization:** Docker & Kubernetes mastery.
+*   **Cloud Platforms:** AWS, GCP, and Azure core services.
    
-| ![DevOps Roadmap](https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13) 
-
+| ![Learning tracks](https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13) 
 
 *Figure 4: Modular learning tracks for various technologies.*
 
