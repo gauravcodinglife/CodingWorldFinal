@@ -27,8 +27,8 @@ Stop reading about commands. Start typing them. Our simulated terminal validates
 *   **Real CLI Simulation:** Practice Linux, Docker, and K8s commands without needing a local setup.
 *   **AI DevOps Mentor:** Stuck? Our AI analyzes your command and suggests the next step or explains the syntax.
 
-![CLI Terminal](<img width="1694" height="743" alt="image" src="https://github.com/user-attachments/assets/e1efec40-ad9a-4d7b-a26a-a638addd5c7a" />
-)
+<img width="1694" height="743" alt="image" src="https://github.com/user-attachments/assets/c6d261db-d955-46cd-85aa-b1bc2c37294c" />
+
 *Figure 2: AI-powered CLI practice environment.*
 
 ### 🗺️ Structured Learning Roadmaps
@@ -36,8 +36,8 @@ From "Hello World" to "System Design." We offer guided paths for every career st
 *   **30 Days to Cloud Engineer:** A day-by-day breakdown of AWS, Networking, and Security.
 *   **Role-Based Tracks:** DevOps, Backend, Frontend, and Security specializations.
 
-![Roadmap View](<img width="1270" height="3957" alt="image" src="https://github.com/user-attachments/assets/e633f786-e360-470f-91d2-691cf7d4d173" />
-)
+<img width="1270" height="3957" alt="image" src="https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb" />
+
 *Figure 3: Comprehensive 30-day Cloud Engineer roadmap.*
 
 ### 🎓 Comprehensive Learning Tracks
@@ -46,8 +46,8 @@ Deep-dive modules with "Problem-First" learning methodology.
 *   **Containerization:** Docker & Kubernetes mastery.
 *   **Cloud Platforms:** AWS, GCP, and Azure core services.
 
-![Learning Tracks](<img width="1632" height="2001" alt="image" src="https://github.com/user-attachments/assets/ba151172-ffd5-4b24-8846-04445cd8df3c" />
-)
+<img width="1846" height="1718" alt="image" src="https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13" />
+
 *Figure 4: Modular learning tracks for various technologies.*
 
 ### 💼 Interview Preparation Suite
@@ -56,8 +56,8 @@ Ace your next technical interview with company-specific modules.
 *   **System Design:** Scalable architecture patterns.
 *   **Behavioral & DSA:** Comprehensive question banks.
 
-![Interview Prep](<img width="1846" height="1718" alt="image" src="https://github.com/user-attachments/assets/1149d56f-d54d-43b3-a429-e071b1fecceb" />
-)
+<img width="1780" height="1522" alt="image" src="https://github.com/user-attachments/assets/535f9236-1556-428f-8452-94f3c761fc0f" />
+
 *Figure 5: Company-specific interview preparation modules.*
 
 ### 📊 User Progress & Gamification
@@ -66,8 +66,8 @@ Track your growth with detailed analytics.
 *   **Streaks & Badges:** Stay motivated with daily activity tracking.
 *   **Course Progress:** Real-time completion metrics.
 
-![User Dashboard](<img width="1632" height="2001" alt="image" src="https://github.com/user-attachments/assets/e8507329-7e31-4d67-ab28-ad160034f180" />
-)
+<img width="1780" height="1522" alt="image" src="https://github.com/user-attachments/assets/6c7253b7-dde5-441d-86d7-add2f25019cb" />
+
 *Figure 6: Personalized user dashboard with progress tracking.*
 
 ---
