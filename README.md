@@ -43,7 +43,7 @@ From "Hello World" to "System Design." We offer guided paths for every career st
     </td>
     <td align="center" width="50%">
       <h4>☁️ 30 Days to Cloud Engineer</h4>
-      <img src="https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb" width="100%" style="max-width: 100%; height: auto;" alt="Cloud Roadmap" />
+      <img src="https://github.com/user-attachments/assets/a1feaa06-aee8-4e7f-bd42-5b13033d153c" width="100%" style="max-width: 100%; height: auto;" alt="Cloud Roadmap" />
     </td>
   </tr>
 </table>
