@@ -45,8 +45,8 @@ Deep-dive modules with "Problem-First" learning methodology.
 *   30 Days to Cloud Engineer: A day-by-day breakdown of AWS, Networking, and Security.
 *   30 Days to DevOps Engineer: Linux → Git → Docker → K8s → Terraform → Monitoring.
 *   Role-Based Tracks: DevOps, Backend, Frontend, and Security specializations.
-
-<img width="1846" height="1718" alt="image" src="https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13" />  |  <img width="1157" height="3845" alt="image" src="https://github.com/user-attachments/assets/7f061675-d086-4ab7-9963-a62b6d0d1d06" />
+*   
+| ![DevOps Roadmap](https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13) | ![Cloud Roadmap](https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb) |
 
 
 *Figure 4: Modular learning tracks for various technologies.*
