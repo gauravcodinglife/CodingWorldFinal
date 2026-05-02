@@ -66,7 +66,7 @@ Track your growth with detailed analytics.
 *   **Streaks & Badges:** Stay motivated with daily activity tracking.
 *   **Course Progress:** Real-time completion metrics.
 
-<img width="1655" height="2011" alt="image" src="https://github.com/user-attachments/assets/c6cad6f3-17d2-4cee-a54c-fbb20c34a192" />
+<img width="1825" height="2184" alt="image" src="https://github.com/user-attachments/assets/351acb9b-30af-45d0-b26f-289af735e779" />
 
 *Figure 6: Personalized user dashboard with progress tracking.*
 
