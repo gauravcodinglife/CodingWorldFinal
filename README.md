@@ -38,15 +38,16 @@ From "Hello World" to "System Design." We offer guided paths for every career st
 
 <img width="1270" height="3957" alt="image" src="https://github.com/user-attachments/assets/82a74144-55f3-4f41-98fc-9a1344ddafcb" />
 
-*Figure 3: Comprehensive 30-day Cloud Engineer roadmap.*
+*Figure 3: Comprehensive 30-day Cloud and DevOps Engineer roadmap.*
 
 ### 🎓 Comprehensive Learning Tracks
 Deep-dive modules with "Problem-First" learning methodology.
-*   **Linux Fundamentals:** File systems, permissions, and shell scripting.
-*   **Containerization:** Docker & Kubernetes mastery.
-*   **Cloud Platforms:** AWS, GCP, and Azure core services.
+*   30 Days to Cloud Engineer: A day-by-day breakdown of AWS, Networking, and Security.
+*   30 Days to DevOps Engineer: Linux → Git → Docker → K8s → Terraform → Monitoring.
+*   Role-Based Tracks: DevOps, Backend, Frontend, and Security specializations.
 
-<img width="1846" height="1718" alt="image" src="https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13" />
+<img width="1846" height="1718" alt="image" src="https://github.com/user-attachments/assets/3e97e2e4-eaba-4b8b-a850-382ea98b6e13" />  |  <img width="1157" height="3845" alt="image" src="https://github.com/user-attachments/assets/7f061675-d086-4ab7-9963-a62b6d0d1d06" />
+
 
 *Figure 4: Modular learning tracks for various technologies.*
 
